@@ -6,10 +6,12 @@ import com.zr.littleflyingpig.dao.IWaretypeDao;
 import com.zr.littleflyingpig.pojo.Waretype;
 
 /**
- * 商品分类Dao接口，包含一系列商品分类处理的方法。
- *Waretype：商品分类实体类，根据数据库中tb_waretype表建立*/
-
-public class WaretypeDao implements IWaretypeDao{
+ * 商品分类Dao层接口实现类
+ * 
+ * @author Administrator
+ *
+ */
+public class WaretypeDao implements IWaretypeDao {
 
 	@Override
 	public boolean addWaretype(Waretype waretype) {

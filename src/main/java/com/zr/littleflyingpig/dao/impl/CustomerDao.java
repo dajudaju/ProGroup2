@@ -5,9 +5,14 @@ import java.util.List;
 import com.zr.littleflyingpig.dao.ICustomerDao;
 import com.zr.littleflyingpig.pojo.Customer;
 
+/**
+ * 用户dao层接口实现类
+ * 
+ * @author Administrator
+ *
+ */
+public class CustomerDao implements ICustomerDao {
 
-public class CustomerDao implements ICustomerDao{
-	
 	@Override
 	public Customer login(String c_name, String c_password) {
 		// TODO Auto-generated method stub

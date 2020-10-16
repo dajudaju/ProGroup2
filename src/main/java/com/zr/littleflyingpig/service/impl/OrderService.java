@@ -3,48 +3,56 @@ package com.zr.littleflyingpig.service.impl;
 import java.util.Date;
 import java.util.List;
 
+import com.zr.littleflyingpig.dao.IOrderDao;
 import com.zr.littleflyingpig.dao.impl.OrderDao;
 import com.zr.littleflyingpig.pojo.Order;
 import com.zr.littleflyingpig.service.IOrderService;
 
-public class OrderService implements IOrderService{
-	
-	private OrderDao dao = new OrderDao();
+/**
+ * 订单服务接口实现类
+ * 
+ * @author Administrator
+ *
+ */
+public class OrderService implements IOrderService {
+
+	// 获取订单dao层接口
+	private IOrderDao dao = new OrderDao();
 
 	@Override
 	public boolean addOrder(Order order) {
-		// TODO Auto-generated method stub
-		return false;
+
+		return dao.addOrder(order);
 	}
 
 	@Override
 	public boolean updateOrder(Order order) {
-		// TODO Auto-generated method stub
-		return false;
+
+		return dao.updateOrder(order);
 	}
 
 	@Override
 	public boolean deleteOrder(int[] o_ids) {
-		// TODO Auto-generated method stub
-		return false;
+
+		return dao.deleteOrder(o_ids);
 	}
 
 	@Override
 	public Order findOrderById(int o_id) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return dao.findOrderById(o_id);
 	}
 
 	@Override
 	public List<Order> findOrdersByDate(Date date1, Date date2) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return dao.findOrdersByDate(date1, date2);
 	}
 
 	@Override
 	public List<Order> findOrdersByState(int o_state) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return dao.findOrdersByState(o_state);
 	}
 
 }

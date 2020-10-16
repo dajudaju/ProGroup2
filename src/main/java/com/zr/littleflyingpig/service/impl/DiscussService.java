@@ -2,54 +2,62 @@ package com.zr.littleflyingpig.service.impl;
 
 import java.util.List;
 
+import com.zr.littleflyingpig.dao.IDiscussDao;
 import com.zr.littleflyingpig.dao.impl.DiscussDao;
 import com.zr.littleflyingpig.pojo.Discuss;
 import com.zr.littleflyingpig.service.IDiscussService;
 
-public class DiscussService implements IDiscussService{
+/**
+ * 用户评论服务接口实现类
+ * 
+ * @author Administrator
+ *
+ */
+public class DiscussService implements IDiscussService {
 
-	private  DiscussDao dao = new DiscussDao();
-	
+	// 获取用户评论dao层接口
+	private IDiscussDao dao = new DiscussDao();
+
 	@Override
 	public boolean addDiscuss(Discuss discuss) {
-		// TODO Auto-generated method stub
-		return false;
+
+		return dao.addDiscuss(discuss);
 	}
 
 	@Override
 	public boolean updateDiscuss(Discuss discuss) {
-		// TODO Auto-generated method stub
-		return false;
+
+		return dao.updateDiscuss(discuss);
 	}
 
 	@Override
 	public boolean deleteDiscuss(int d_id) {
-		// TODO Auto-generated method stub
-		return false;
+
+		return dao.deleteDiscuss(d_id);
 	}
 
 	@Override
 	public Discuss findDiscussById(int d_id) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return dao.findDiscussById(d_id);
 	}
 
 	@Override
 	public List<Discuss> findAllDiscuss() {
-		// TODO Auto-generated method stub
-		return null;
+
+		return dao.findAllDiscuss();
 	}
 
 	@Override
 	public List<Discuss> findDiscussesByReplay(boolean flag) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return dao.findDiscussesByReplay(flag);
 	}
 
 	@Override
 	public List<Discuss> findDiscussesByWid(int w_id) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return dao.findDiscussesByWid(w_id);
 	}
 
 }

@@ -1,23 +1,31 @@
 package com.zr.littleflyingpig.service.impl;
 
+import com.zr.littleflyingpig.dao.IManagerDao;
 import com.zr.littleflyingpig.dao.impl.ManagerDao;
 import com.zr.littleflyingpig.pojo.Manager;
 import com.zr.littleflyingpig.service.IManagerService;
 
-public class ManagerService implements IManagerService{
+/**
+ * 管理员服务接口实现类
+ * 
+ * @author Administrator
+ *
+ */
+public class ManagerService implements IManagerService {
 
-	private ManagerDao  dao = new ManagerDao();
-	
+	// 获取管路员dao层接口
+	private IManagerDao dao = new ManagerDao();
+
 	@Override
 	public Manager login(String m_name, String m_password) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return dao.login(m_name, m_password);
 	}
 
 	@Override
 	public boolean updateManager(Manager manager) {
-		// TODO Auto-generated method stub
-		return false;
+
+		return dao.updateManager(manager);
 	}
 
 }

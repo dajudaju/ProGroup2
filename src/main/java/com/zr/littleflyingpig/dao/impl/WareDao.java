@@ -5,7 +5,13 @@ import java.util.List;
 import com.zr.littleflyingpig.dao.IWareDao;
 import com.zr.littleflyingpig.pojo.Ware;
 
-public class WareDao implements IWareDao{
+/**
+ * 商品dao层接口实现类
+ * 
+ * @author Administrator
+ *
+ */
+public class WareDao implements IWareDao {
 
 	@Override
 	public boolean addWare(Ware ware) {

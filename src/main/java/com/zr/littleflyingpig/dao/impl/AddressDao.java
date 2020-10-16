@@ -5,7 +5,13 @@ import java.util.List;
 import com.zr.littleflyingpig.dao.IAddressDao;
 import com.zr.littleflyingpig.pojo.Address;
 
-public class AddressDao implements IAddressDao{
+/**
+ * 收获地址dao层接口实现类
+ * 
+ * @author Administrator
+ *
+ */
+public class AddressDao implements IAddressDao {
 
 	@Override
 	public boolean addAddress(Address address) {
