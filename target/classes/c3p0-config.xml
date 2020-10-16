@@ -9,7 +9,7 @@
 	<default-config>
 		<property name="driverClass">com.mysql.cj.jdbc.Driver</property>
 		<!-- 对于特殊符号, 需要使用其实体编码 -->
-		<property name="jdbcUrl">jdbc:mysql://localhost:3306/ems?useSSL=false&amp;serverTimezone=UTC&amp;allowPublicKeyRetrieval=true</property>
+		<property name="jdbcUrl">jdbc:mysql://localhost:3306/storesystem?useSSL=false&amp;serverTimezone=UTC&amp;allowPublicKeyRetrieval=true</property>
 		<property name="user">root</property>
 		<property name="password">123456</property>
 		
