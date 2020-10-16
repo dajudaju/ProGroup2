@@ -1,23 +1,21 @@
 /*
  Navicat MySQL Data Transfer
 
- Source Server         : mysql
+ Source Server         : 127.0.0.1
  Source Server Type    : MySQL
- Source Server Version : 80015
+ Source Server Version : 80017
  Source Host           : localhost:3306
  Source Schema         : storesystem
 
  Target Server Type    : MySQL
- Target Server Version : 80015
+ Target Server Version : 80017
  File Encoding         : 65001
 
- Date: 16/10/2020 11:16:50
+ Date: 16/10/2020 20:40:31
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
-
-create database storesystem character set utf8 collate utf8_bin;
 
 -- ----------------------------
 -- Table structure for tb_address
@@ -33,6 +31,10 @@ CREATE TABLE `tb_address`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Records of tb_address
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for tb_customer
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_customer`;
@@ -46,6 +48,10 @@ CREATE TABLE `tb_customer`  (
   PRIMARY KEY (`c_id`) USING BTREE,
   UNIQUE INDEX `c_name`(`c_name`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of tb_customer
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for tb_discuss
@@ -65,6 +71,10 @@ CREATE TABLE `tb_discuss`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Records of tb_discuss
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for tb_information
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_information`;
@@ -79,6 +89,10 @@ CREATE TABLE `tb_information`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Records of tb_information
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for tb_manager
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_manager`;
@@ -89,6 +103,12 @@ CREATE TABLE `tb_manager`  (
   PRIMARY KEY (`m_id`) USING BTREE,
   UNIQUE INDEX `m_name`(`m_name`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of tb_manager
+-- ----------------------------
+INSERT INTO `tb_manager` VALUES (1, 'admin', '123456');
+INSERT INTO `tb_manager` VALUES (2, 'super', '123456');
 
 -- ----------------------------
 -- Table structure for tb_order
@@ -116,6 +136,10 @@ CREATE TABLE `tb_order`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Records of tb_order
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for tb_ware
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_ware`;
@@ -132,10 +156,14 @@ CREATE TABLE `tb_ware`  (
   `w_sale` int(11) NOT NULL DEFAULT 0 COMMENT '商品销量',
   `w_state` bit(1) NULL DEFAULT b'0' COMMENT '商品上架/下架状态，0：未上架，1：已上架',
   PRIMARY KEY (`w_id`) USING BTREE,
-  INDEX `w_tid`(`t_id`) USING BTREE,
   UNIQUE INDEX `w_name`(`w_name`) USING BTREE,
+  INDEX `w_tid`(`t_id`) USING BTREE,
   CONSTRAINT `w_tid` FOREIGN KEY (`t_id`) REFERENCES `tb_waretype` (`t_id`) ON DELETE SET NULL ON UPDATE RESTRICT
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of tb_ware
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for tb_warecustomer
@@ -154,6 +182,10 @@ CREATE TABLE `tb_warecustomer`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Records of tb_warecustomer
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for tb_waretype
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_waretype`;
@@ -163,5 +195,13 @@ CREATE TABLE `tb_waretype`  (
   PRIMARY KEY (`t_id`) USING BTREE,
   UNIQUE INDEX `t_id`(`t_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of tb_waretype
+-- ----------------------------
+INSERT INTO `tb_waretype` VALUES (1, '沙发');
+INSERT INTO `tb_waretype` VALUES (2, '座椅');
+INSERT INTO `tb_waretype` VALUES (3, '餐桌');
+INSERT INTO `tb_waretype` VALUES (4, '厨房用品');
 
 SET FOREIGN_KEY_CHECKS = 1;
