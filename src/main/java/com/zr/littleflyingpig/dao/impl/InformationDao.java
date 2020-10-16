@@ -5,7 +5,13 @@ import java.util.List;
 import com.zr.littleflyingpig.dao.IInformationDao;
 import com.zr.littleflyingpig.pojo.Information;
 
-public class InformationDao implements IInformationDao{
+/**
+ * 通知dao层接口实现类
+ * 
+ * @author Administrator
+ *
+ */
+public class InformationDao implements IInformationDao {
 
 	@Override
 	public boolean addInformation(Information information) {

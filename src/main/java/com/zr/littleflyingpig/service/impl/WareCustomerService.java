@@ -2,42 +2,50 @@ package com.zr.littleflyingpig.service.impl;
 
 import java.util.List;
 
+import com.zr.littleflyingpig.dao.IWareCustomerDao;
 import com.zr.littleflyingpig.dao.impl.WareCustomerDao;
 import com.zr.littleflyingpig.pojo.WareCustomer;
 import com.zr.littleflyingpig.service.IWareCustomerService;
 
-public class WareCustomerService implements IWareCustomerService{
+/**
+ * 用户-商品关系服务接口实现类
+ * 
+ * @author Administrator
+ *
+ */
+public class WareCustomerService implements IWareCustomerService {
 
-	private WareCustomerDao dao = new WareCustomerDao();
-	
+	// 获取用户-商品dao层接口
+	private IWareCustomerDao dao = new WareCustomerDao();
+
 	@Override
 	public boolean addWareCustomer(WareCustomer wareCustomer) {
-		// TODO Auto-generated method stub
-		return false;
+
+		return dao.addWareCustomer(wareCustomer);
 	}
 
 	@Override
 	public boolean updateWareCustomer(WareCustomer wareCustomer) {
-		// TODO Auto-generated method stub
-		return false;
+
+		return dao.updateWareCustomer(wareCustomer);
 	}
 
 	@Override
 	public boolean deleteWareCustomer(int c_id, int w_id) {
-		// TODO Auto-generated method stub
-		return false;
+
+		return dao.deleteWareCustomer(c_id, w_id);
 	}
 
 	@Override
 	public WareCustomer findWareCustomerByCidAndWid(int c_id, int w_id) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return dao.findWareCustomerByCidAndWid(c_id, w_id);
 	}
 
 	@Override
 	public List<WareCustomer> findWareCustomersByCid(int c_id, boolean flag) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return dao.findWareCustomersByCid(c_id, flag);
 	}
 
 }

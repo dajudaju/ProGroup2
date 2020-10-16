@@ -5,7 +5,13 @@ import java.util.List;
 import com.zr.littleflyingpig.dao.IDiscussDao;
 import com.zr.littleflyingpig.pojo.Discuss;
 
-public class DiscussDao implements IDiscussDao{
+/**
+ * 用户评论dao层接口实现类
+ * 
+ * @author Administrator
+ *
+ */
+public class DiscussDao implements IDiscussDao {
 
 	@Override
 	public boolean addDiscuss(Discuss discuss) {

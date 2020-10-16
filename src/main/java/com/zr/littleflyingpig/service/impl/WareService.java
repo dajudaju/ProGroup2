@@ -2,73 +2,80 @@ package com.zr.littleflyingpig.service.impl;
 
 import java.util.List;
 
+import com.zr.littleflyingpig.dao.IWareDao;
 import com.zr.littleflyingpig.dao.impl.WareDao;
 import com.zr.littleflyingpig.pojo.Ware;
 import com.zr.littleflyingpig.service.IWareService;
 
-public class WareService implements IWareService{
+/**
+ * 商品服务接口实现类
+ * 
+ * @author Administrator
+ *
+ */
+public class WareService implements IWareService {
 
-	private WareDao dao = new WareDao();
-	
+	// 获取商品dao层接口
+	private IWareDao dao = new WareDao();
+
 	@Override
 	public boolean addWare(Ware ware) {
-		// TODO Auto-generated method stub
-		return false;
+
+		return dao.addWare(ware);
 	}
 
 	@Override
 	public boolean updateWare(Ware ware) {
-		// TODO Auto-generated method stub
-		return false;
+
+		return dao.updateWare(ware);
 	}
 
 	@Override
 	public boolean deleteWare(int w_id) {
-		// TODO Auto-generated method stub
-		return false;
+
+		return dao.deleteWare(w_id);
 	}
 
 	@Override
 	public Ware findWareById(int w_id) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return dao.findWareById(w_id);
 	}
 
 	@Override
 	public List<Ware> findAllWareBySales(boolean flag) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return dao.findAllWareBySales(flag);
 	}
 
 	@Override
 	public List<Ware> findAllWareByPrice(boolean flag) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return dao.findAllWareByPrice(flag);
 	}
 
 	@Override
 	public List<Ware> findWaresByString(String str) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return dao.findWaresByString(str);
 	}
 
 	@Override
 	public List<Ware> findWaresByType(int t_id) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return dao.findWaresByType(t_id);
 	}
 
 	@Override
 	public List<Ware> findWaresByPrice(double low, double high) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return dao.findWaresByPrice(low, high);
 	}
 
 	@Override
 	public List<Ware> findWaresByTypeAndPrice(int t_id, double low, double high) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return dao.findWaresByTypeAndPrice(t_id, low, high);
 	}
 
-	
 }

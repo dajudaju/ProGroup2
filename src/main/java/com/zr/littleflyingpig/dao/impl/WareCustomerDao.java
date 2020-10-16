@@ -5,7 +5,13 @@ import java.util.List;
 import com.zr.littleflyingpig.dao.IWareCustomerDao;
 import com.zr.littleflyingpig.pojo.WareCustomer;
 
-public class WareCustomerDao implements IWareCustomerDao{
+/**
+ * 用户-商品dao层接口实现类
+ * 
+ * @author Administrator
+ *
+ */
+public class WareCustomerDao implements IWareCustomerDao {
 
 	@Override
 	public boolean addWareCustomer(WareCustomer wareCustomer) {
@@ -36,7 +42,5 @@ public class WareCustomerDao implements IWareCustomerDao{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	
 
 }

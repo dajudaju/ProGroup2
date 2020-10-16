@@ -7,38 +7,45 @@ import com.zr.littleflyingpig.dao.impl.AddressDao;
 import com.zr.littleflyingpig.pojo.Address;
 import com.zr.littleflyingpig.service.IAddressService;
 
-public class AddressService implements IAddressService{
+/**
+ * 收获地址服务接口实现类
+ * 
+ * @author Administrator
+ *
+ */
+public class AddressService implements IAddressService {
 
-	private IAddressDao dao=new AddressDao();
-	
+	// 获取收获地址dao层接口
+	private IAddressDao dao = new AddressDao();
+
 	@Override
 	public boolean addAddress(Address address) {
-		// TODO Auto-generated method stub
-		return false;
+
+		return dao.addAddress(address);
 	}
 
 	@Override
 	public boolean updateAddress(Address address) {
-		// TODO Auto-generated method stub
-		return false;
+
+		return dao.updateAddress(address);
 	}
 
 	@Override
 	public boolean deleteAddress(int a_id) {
-		// TODO Auto-generated method stub
-		return false;
+
+		return dao.deleteAddress(a_id);
 	}
 
 	@Override
 	public Address findAddressById(int a_id) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return dao.findAddressById(a_id);
 	}
 
 	@Override
 	public List<Address> findAddressesByCid(int c_id) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return dao.findAddressesByCid(c_id);
 	}
 
 }

@@ -6,7 +6,13 @@ import java.util.List;
 import com.zr.littleflyingpig.dao.IOrderDao;
 import com.zr.littleflyingpig.pojo.Order;
 
-public class OrderDao implements IOrderDao{
+/**
+ * 订单dao层接口实现类
+ * 
+ * @author Administrator
+ *
+ */
+public class OrderDao implements IOrderDao {
 
 	@Override
 	public boolean addOrder(Order order) {
@@ -44,6 +50,4 @@ public class OrderDao implements IOrderDao{
 		return null;
 	}
 
-
-	
 }
