@@ -78,4 +78,10 @@ public class WareService implements IWareService {
 		return dao.findWaresByTypeAndPrice(t_id, low, high);
 	}
 
+	@Override
+	public List<Ware> findAllWares() {
+
+		return dao.findAllWares();
+	}
+
 }

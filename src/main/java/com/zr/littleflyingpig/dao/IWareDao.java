@@ -94,4 +94,11 @@ public interface IWareDao {
 	 */
 	List<Ware> findWaresByTypeAndPrice(int t_id, double low, double high);
 
+	/**
+	 * 查询所有商品
+	 * 
+	 * @return 一个Ware对象的集合
+	 */
+	List<Ware> findAllWares();
+
 }
