@@ -9,11 +9,11 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
         <meta http-equiv="Cache-Control" content="no-siteapp" />
-        <link rel="stylesheet" href="./css/font.css">
-        <link rel="stylesheet" href="./css/index.css">
-        <link rel="stylesheet" href="./css/iconfont.css">
-        <script src="./lib/layui/layui.js" charset="utf-8"></script>
-        <script type="text/javascript" src="./js/index.js"></script>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/Manager/css/font.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/Manager/css/index.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/Manager/css/iconfont.css">
+        <script src="${pageContext.request.contextPath}/Manager/lib/layui/layui.js" charset="utf-8"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/Manager/js/index.js"></script>
         <style>
             .show_list{display: block !important;}
             .hide_lits{display: none;}

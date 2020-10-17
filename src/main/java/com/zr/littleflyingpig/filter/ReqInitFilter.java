@@ -32,10 +32,14 @@ public class ReqInitFilter implements Filter {
 		req.setCharacterEncoding(encoding);
 		resp.setCharacterEncoding(encoding);
 		resp.setContentType("text/html;charset=" + encoding);
-
-		chain.doFilter(req, resp);
-		System.out.println("过滤器已放行!");
-
+		
+		if(req.toString().contains(".css") || req.toString().contains(".js") || req.toString().contains(".png")|| req.toString().contains(".do")){
+            //发现是css或者js文件，直接放行
+            chain.doFilter(req, resp);
+        }else {
+        	chain.doFilter(req, resp);
+    		System.out.println("过滤器已放行!");
+		}
 	}
 
 }
