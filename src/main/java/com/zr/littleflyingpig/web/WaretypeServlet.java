@@ -8,6 +8,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * 商品分类的请求处理
+ * 
+ * @author Administrator
+ *
+ */
 @SuppressWarnings("serial")
 @WebServlet("/waretypeServlet")
 public class WaretypeServlet extends HttpServlet {
