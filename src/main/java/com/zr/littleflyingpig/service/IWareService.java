@@ -97,7 +97,7 @@ public interface IWareService {
 	 * @param t_id int类型，商品分类id
 	 * @param low  double类型，表示价格区间中低的值
 	 * @param high double类型，表示价格区间中高的值
-	 * @return 个Ware对象的集合
+	 * @return 一个Ware对象的集合
 	 */
 	List<Ware> findWaresByTypeAndPrice(int t_id, double low, double high);
 
