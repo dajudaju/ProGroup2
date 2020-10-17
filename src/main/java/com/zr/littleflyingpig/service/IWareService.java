@@ -37,7 +37,13 @@ public interface IWareService {
 	boolean deleteWare(int w_id);
 
 	/**
-	 * 根据商品id删除商品信息
+	 * 查询所有商品信息
+	 * @return 一个Ware对象的集合
+	 */
+	List<Ware> findAllWares();
+	
+	/**
+	 * 根据商品id查询商品信息
 	 * 
 	 * @param w_id int类型，商品id
 	 * @return 一个Ware对象

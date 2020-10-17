@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html class="x-admin-sm">
 <head>
@@ -8,10 +9,10 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
-    <link rel="stylesheet" href="./css/font.css">
-    <link rel="stylesheet" href="./css/index.css">
-    <script src="./lib/layui/layui.js" charset="utf-8"></script>
-    <script type="text/javascript" src="./js/index.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Manager/css/font.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Manager/css/index.css">
+    <script src="${pageContext.request.contextPath}/Manager/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/Manager/js/index.js"></script>
 	<style type="text/css">
 		#dd{
 			font-size:20px;
@@ -50,7 +51,7 @@
                     </form>
                 </div>
                 <div class="layui-card-header">
-                    <button class="layui-btn" onclick="xadmin.open('添加商品','./goods-add.jsp')"><i class="layui-icon"></i>添加</button>
+                    <button class="layui-btn" onclick="xadmin.open('添加商品','${pageContext.request.contextPath}/Manager/goods-add.jsp')"><i class="layui-icon"></i>添加</button>
                 </div>
                 <div class="layui-card-body layui-table-body layui-table-main">
                     <table class="layui-table layui-form" style="align-content: center;">
@@ -95,40 +96,46 @@
                         </tr>
                         </thead>
                         <tbody>
+                        <c:forEach items="${wareMap}" var="item" begin="0" step="1" varStatus="vs">
                         <tr>
                             <td>
-                                1
+                                ${vs.count}
                             </td>
-
+						
                             <td >
-                                华为P30
-                            </td>
-                            <td >
-                                HW168
+                               ${item.key.w_name }
                             </td>
                             <td >
-                                4200
+                                ${item.key.w_price }
                             </td>
                             <td >
-                                <i class="layui-icon" style="color: #06f957">&#xe605;</i>
+                                ${item.value }
                             </td>
                             <td >
-                                <i class="layui-icon" style="color: red">&#x1006;</i>
+                                ${item.key.w_brand }
                             </td>
                             <td >
-                                <i class="layui-icon" style="color: #06f957">&#xe605;</i>
+                                ${item.key.w_material }
                             </td>
                             <td >
-                                <i class="layui-icon" style="color: red">&#x1006;</i>
+                                ${item.key.w_describe }
+                            </td>
+                            <td >
+                                
                             </td>
                             <td>
-                                2018-01-01 11:11:42
+                                ${item.key.w_repertory }
                             </td>
-                            <td class="td-status">
-                                600
+                            <td>
+                                ${item.key.w_sale }
                             </td>
-                            <td >
+                            <td class="td-status" id="state">
+                            	<c:if test="${item.key.w_state=='0'}">
                               	未上架
+                              	</c:if>
+                              	<c:if test="${item.key.w_state=='1'}">
+                              	已上架
+                              	</c:if>
                             </td>
                             <td class="td-manage">
                                 <a style="text-decoration:none" onclick="member_stop(this,'10001')" href="javascript:;" title="禁用">
@@ -140,7 +147,7 @@
                                 </a>
                             </td>
                         </tr>
-
+						</c:forEach>
                         </tbody>
                     </table>
                 </div>
@@ -166,7 +173,7 @@
     layui.use(['laydate','form'], function(){
         var laydate = layui.laydate;
         var  form = layui.form;
-
+		
 
         // 监听全选
         form.on('checkbox(checkall)', function(data){
@@ -200,6 +207,7 @@
 
     /*用户-停用*/
     function member_stop(obj,id){
+    	var 
         layer.confirm('确认要下架吗？',{icon:3,title:'提示信息'},function(index){
 
             if($(obj).attr('title')=='下架'){
