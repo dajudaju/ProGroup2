@@ -41,8 +41,41 @@ public class ManagerServlet extends HttpServlet {
 		} else if ("logout".equals(cmd)) {
 			// 安全退出
 			logout(req, resp);
+		} else if ("updatepwd".equals(cmd)) {
+			//修改密码
+			updatepwd(req,resp);
 		}
 
+	}
+
+	/**
+	 * 管理员修改密码的请求处理
+	 * 
+	 * @param req
+	 * @param resp
+	 * @throws IOException
+	 */
+	private void updatepwd(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		
+		//获取当前登录用户
+		Manager manager = (Manager)req.getSession().getAttribute("manager");
+		//获取新密码
+		manager.setM_password(req.getParameter("m_password"));
+		
+		//获取管理员服务
+		IManagerService service = new ManagerService();
+		boolean flag = service.updateManager(manager);
+		
+		if (flag) {
+			//修改成功
+			resp.getWriter().write("<script>parent.location.href ='Manager/login.jsp';</script>");
+			
+			
+		}else {
+			//修改失败
+			System.out.println("修改失败!");
+		}
+		
 	}
 
 	/**

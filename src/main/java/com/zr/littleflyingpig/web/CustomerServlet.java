@@ -25,11 +25,11 @@ public class CustomerServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		//获取请求的操作指令
+
+		// 获取请求的操作指令
 		String cmd = req.getParameter("cmd");
-		
-		
+		System.out.println("用户cmd: " + cmd);
+
 	}
 
 }
