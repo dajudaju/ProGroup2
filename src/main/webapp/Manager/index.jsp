@@ -61,7 +61,7 @@
             <div id="side-nav">
                 <ul id="nav">
                     <li>
-                        <a href="javascript:;" onclick="xadmin.add_tab('我的桌面','welcome.jsp')">
+                        <a href="javascript:;" onclick="xadmin.add_tab('我的桌面','${pageContext.request.contextPath}/managerServlet?cmd=welcome')">
                             <i class="layui-icon left-nav-li" lay-tips="首页">&#xe68e;</i>
                             <cite>首页</cite>
                             <i class="iconfont nav_right">&#xe697;</i></a>
@@ -156,7 +156,7 @@
                 </div>
                 <div class="layui-tab-content">
                     <div class="layui-tab-item layui-show">
-                        <iframe src='./welcome.jsp' frameborder="0" scrolling="yes" class="x-iframe"></iframe>
+                        <iframe src='${pageContext.request.contextPath}/managerServlet?cmd=welcome' frameborder="0" scrolling="yes" class="x-iframe"></iframe>
                     </div>
                 </div>
                 <div id="tab_show"></div>

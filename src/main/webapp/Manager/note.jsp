@@ -46,14 +46,14 @@
                         <div class="layui-inline layui-show-xs-block">
                             <input type="text" name="d_name"  placeholder="请输入商品名" autocomplete="off" class="layui-input">
                         </div>
-                        <div class="layui-input-inline layui-show-xs-block">
+                        <!-- <div class="layui-input-inline layui-show-xs-block">
                                     <select name="d_state">
                                         <option value="-1">回复状态</option>
                                         <option value="0">未回复</option>
                                         <option value="1">已回复</option>
                                     </select>
-                                </div>
-                        <div class="layui-inline layui-show-xs-block">
+                                </div>-->
+                        <div class="layui-inline layui-show-xs-block"> 
                             <button type="submit" class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
                         </div>
                 </div>
@@ -70,7 +70,7 @@
                             <th>
                                 <input type="checkbox" lay-filter="checkall" name="check" lay-skin="primary">
                             </th>
-                            <th>ID</th>
+                            <th>商品ID</th>
                             <th>用户名</th>
                             <th>商品名</th>
                             <th>评论内容</th>
@@ -84,7 +84,7 @@
 	                            <td>
 	                                <input type="checkbox" name="d_id" value="${d.d_id }"   lay-skin="primary">
 	                            </td>
-								<td>${d.d_id }</td>
+								<td>${d.w_id }</td>
 	                            <td>${d.c_name }</td>
 	                            <td>${d.w_name }</td>
 	                            <td>${d.d_content }</td>

@@ -9,13 +9,13 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
         <!--<link rel="stylesheet" href="./css/font.css">-->
-        <link rel="stylesheet" href="./css/index.css">
-        <link rel="stylesheet" href="./css/iconfont.css">
-        <script src="./lib/layui/layui.js" charset="utf-8"></script>
-        <script type="text/javascript" src="./js/index.js"></script>
-        <script src="./js/jquery.js"></script>
-        <script src="./js/jquery.min.js"></script>
-        <script src="./js/survey.js"></script>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/Manager/css/index.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/Manager/css/iconfont.css">
+        <script src="${pageContext.request.contextPath}/Manager/lib/layui/layui.js" charset="utf-8"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/Manager/js/index.js"></script>
+        <script src="${pageContext.request.contextPath}/Manager/js/jquery.js"></script>
+        <script src="${pageContext.request.contextPath}/Manager/js/jquery.min.js"></script>
+        <script src="${pageContext.request.contextPath}/Manager/js/survey.js"></script>
         <style>
             #FontScroll{
                 width: 100%;
@@ -48,8 +48,8 @@
                 <div class="layui-col-md12">
                     <div class="layui-card">
                         <div class="layui-card-body ">
-                            <blockquote class="layui-elem-quote">欢迎管理员：
-                                <span class="x-red" >{sessionScope.mname}</span>
+                            <blockquote class="layui-elem-quote">欢迎登录! &emsp;
+                               <span class="x-red" >${manager.m_name}</span>
                                 <span id="time"></span>
                             </blockquote>
                         </div>
@@ -64,21 +64,21 @@
                                     <a href="javascript:;" class="x-admin-backlog-body">
                                         <h3>成交金额</h3>
                                         <p>
-                                            <cite>6843.50元</cite></p>
+                                            <cite>${money }</cite></p>
                                     </a>
                                 </li>
                                 <li class="layui-col-md2 layui-col-xs6">
                                     <a href="javascript:;" class="x-admin-backlog-body">
                                         <h3>留言</h3>
                                         <p>
-                                            <cite>368条</cite></p>
+                                            <cite>${discuss_number}</cite></p>
                                     </a>
                                 </li>
                                 <li class="layui-col-md2 layui-col-xs6">
                                     <a href="javascript:;" class="x-admin-backlog-body">
                                         <h3>订单</h3>
                                         <p>
-                                            <cite>5689笔</cite></p>
+                                            <cite>${order_number }</cite></p>
                                     </a>
                                 </li>
 
@@ -86,21 +86,21 @@
                                     <a href="javascript:;" class="x-admin-backlog-body">
                                         <h3>待处理</h3>
                                         <p>
-                                            <cite>10条</cite></p>
+                                            <cite>${order_0 }</cite></p>
                                     </a>
                                 </li>
                                 <li class="layui-col-md2 layui-col-xs6 ">
                                     <a href="javascript:;" class="x-admin-backlog-body">
                                         <h3>退款申请</h3>
                                         <p>
-                                            <cite>0条</cite></p>
+                                            <cite>${order_3 }</cite></p>
                                     </a>
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </div>
-                <div class="layui-col-sm6 layui-col-md3">
+                <!-- <div class="layui-col-sm6 layui-col-md3">
                     <div class="layui-card">
                         <div class="layui-card-header">数据统计
                         </div>
@@ -142,14 +142,14 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="layui-col-md12">
+                </div> -->
+                <!-- <div class="layui-col-md12">
                     <div class="layui-card">
                         <div class="layui-card-body ">
                             <p style="text-align: center;"> Copyright ©2020  All Rights Reserved.</p>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
         </div>
