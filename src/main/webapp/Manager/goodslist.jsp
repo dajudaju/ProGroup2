@@ -154,7 +154,7 @@
 						</table>
 					</div>
 
-					<div class="layui-card-body ">
+<!-- 					<div class="layui-card-body ">
 						<div class="page">
 							<div>
 								<a class="prev" href="">&lt;&lt;</a> <a class="num" href="">1</a>
@@ -162,7 +162,7 @@
 									class="num" href="">489</a> <a class="next" href="">&gt;&gt;</a>
 							</div>
 						</div>
-					</div>
+					</div> -->
 
 				</div>
 			</div>
