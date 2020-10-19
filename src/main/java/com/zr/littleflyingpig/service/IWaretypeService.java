@@ -52,4 +52,9 @@ public interface IWaretypeService {
 	 */
 	List<Waretype> findAllWaretype();
 
+	/**
+	 * 根据类别名查询商品
+	 * @return
+	 */
+	boolean findWareTypeByName(String tname);
 }

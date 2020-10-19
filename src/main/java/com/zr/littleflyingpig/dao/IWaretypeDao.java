@@ -51,4 +51,11 @@ public interface IWaretypeDao {
 	 */
 	List<Waretype> findAllWaretype();
 
+	/**
+	 * 根据类别名查询商品
+	 * @param tname
+	 * @return
+	 */
+	boolean findWareTypeByName(String tname);
+
 }

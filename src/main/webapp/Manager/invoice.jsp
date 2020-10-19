@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html class="x-admin-sm">
 <head>
@@ -9,10 +10,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport"
 	content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
-<link rel="stylesheet" href="./css/font.css">
-<link rel="stylesheet" href="./css/index.css">
-<script src="./lib/layui/layui.js" charset="utf-8"></script>
-<script type="text/javascript" src="./js/index.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/Manager/css/font.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/Manager/css/index.css">
+<script src="${pageContext.request.contextPath}/Manager/lib/layui/layui.js" charset="utf-8"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/Manager/js/index.js"></script>
 
 </head>
 <body>
@@ -29,39 +30,39 @@
 			<div class="layui-col-md12">
 				<div class="layui-card">
 					<div class="layui-card-body ">
-						<form class="layui-form layui-col-space5">
-							<div class="layui-inline layui-show-xs-block">
+						<form class="layui-form layui-col-space5" method="post" action="${pageContext.request.contextPath}/orderServlet?cmd=search1&state=0">
+							<!-- <div class="layui-inline layui-show-xs-block">
 								<input class="layui-input" autocomplete="off" placeholder="开始日"
-									name="start" id="start">
+									name="ostart" id="start">
 							</div>
 							-
 							<div class="layui-inline layui-show-xs-block">
 								<input class="layui-input" autocomplete="off" placeholder="截止日"
-									name="end" id="end">
-							</div>
+									name="oend" id="end">
+							</div> -->
 							<div class="layui-inline layui-show-xs-block">
-								<input type="text" name="username" placeholder="订单号"
+								<input type="text" name="onumber" placeholder="订单号"
 									autocomplete="off" class="layui-input">
 							</div>
 							<div class="layui-inline layui-show-xs-block">
-								<button class="layui-btn" lay-submit="" lay-filter="sreach">
-									<i class="layui-icon">&#xe615;</i>
-								</button>
-							</div>
+									<input type="submit" class="layui-btn layui-icon"
+										value="&#xe615;" lay-submit="" lay-filter="sreach">
+							 </div>
 						</form>
 					</div>
 					<div class="layui-card-header">
-						<button class="layui-btn layui-btn-danger" onclick="delAll()">
+						<!-- <button class="layui-btn layui-btn-danger" onclick="delAll()">
 							批量发货
-						</button>
+						</button> -->
+						<span>${msg}</span>
 						<!-- <button class="layui-btn" onclick="xadmin.open('添加用户','./articletypeadd.jsp',800,600)"><i class="layui-icon"></i>添加</button> -->
 					</div>
 					<div class="layui-card-body layui-table-body layui-table-main">
 						<table class="layui-table layui-form">
 							<thead>
 								<tr>
-									<th><input type="checkbox" lay-filter="checkall" name=""
-										lay-skin="primary"></th>
+									<!-- <th><input type="checkbox" lay-filter="checkall" name=""
+										lay-skin="primary"></th> -->
 									<th>订单编号</th>
 									<th>商品名</th>
 									<th>购买数量</th>
@@ -75,28 +76,47 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td><input type="checkbox" name="id" value="1"
-										lay-skin="primary"></td>
-									<td>2</td>
-									<td><a href="#" class="tooltip"><img
-											src="./images/tp.jpg" width="20" height="20"></a></td>
-									<td>admin</td>
-									<td>13.46KB</td>
-									<td>jpg</td>
-									<td>1</td>
-									<td>127.0.0.1</td>
-									<td>2018-01-04 16:49:23</td>
-									<td><span class="layui-badge">待发货</span></td>
+								<c:forEach items="${list}" var="orderlist" begin="0" step="1" varStatus="vs">
+                        <tr>
+                            <%-- <td>
+                                <input type="checkbox" name="oid" value="${orderlist[0].o_id }"  lay-skin="primary">
+                            </td> --%>
+                            <c:set var="oid" value="${orderlist[0].o_id}" />
+                            <td>
+                            	${orderlist[0].o_number}	
+                            </td>
+                            <td>
+                                ${orderlist[1].w_name}
+                            </td>								
+                            <td >
+                            	${orderlist[0].o_count}                              	
+                            </td>
+                            <td >
+                                ${orderlist[0].o_price}
+                            </td>
+                            <td >
+                                ${orderlist[0].o_consignee}
+                            </td>
+                            <td >
+                                ${orderlist[2].a_name}
+                            </td>
+                            <td >
+                                ${orderlist[0].o_tel}
+                            </td>
+                            <td>
+                                ${orderlist[0].o_date}
+                            </td>
+							<td><span class="layui-badge">待发货</span></td>
 									<td class="operation-menu"><button
-										class="layui-btn layui-btn-xs open" data-id="2"
+										class="layui-btn layui-btn-xs open" data-id="2" onclick="return click1(${orderlist[0].o_id})"
 										style="margin-right: 0; font-size: 12px">发货</button> 
 									</td>
 									<td class="operation-menu">
 										<button class="layui-btn layui-btn-xs layui-btn-danger delete"
 											id="2" style="margin-right: 0; font-size: 12px;"
-											onclick="link_del(this,'1')">退单</button></td>
+											onclick="return click2(${orderlist[0].o_id})">退单</button></td>
 								</tr>
+								</c:forEach>
 							</tbody>
 						</table>
 					</div>
@@ -116,7 +136,23 @@
 		</div>
 	</div>
 </body>
-<script>
+<script type="text/javascript">
+function click1(oid) {
+
+	/* var oid=${oid}; */
+	if (confirm("确定要发货吗？")) {
+		location.href = "/storesystem/orderServlet?cmd=invoice&oid="+ oid+"&state=1";
+	}
+}
+function click2(oid) {
+
+	/* var oid=${oid}; */
+	if (confirm("确定要退单吗？")) {
+		location.href = "/storesystem/orderServlet?cmd=return1&oid="+ oid+"&state=2";
+	}
+}
+</script>
+<!-- <script>
 	layui.use([ 'laydate', 'form' ], function() {
 		var laydate = layui.laydate;
 		var form = layui.form;
@@ -221,5 +257,5 @@
 			$(".layui-form-checked").not('.header').parents('tr').remove();
 		});
 	}
-</script>
+</script> -->
 </html>

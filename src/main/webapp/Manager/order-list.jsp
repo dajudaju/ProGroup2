@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html class="x-admin-sm">
     
@@ -9,14 +10,29 @@
         <meta name="renderer" content="webkit">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
-        <link rel="stylesheet" href="./css/font.css">
-        <link rel="stylesheet" href="./css/index.css">
-        <script src="./lib/layui/layui.js" charset="utf-8"></script>
-        <script type="text/javascript" src="./js/index.js"></script>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/Manager/css/font.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/Manager/css/index.css">
+        <script src="${pageContext.request.contextPath}/Manager/lib/layui/layui.js" charset="utf-8"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/Manager/js/index.js"></script>
         <style type="text/css">
         	#dd{
         		font-size:20px;
         	}
+        	#ss {
+	display: inline-block;
+	height: 30px;
+	line-height: 1.3;
+	line-height: 38px\9;
+	border-width: 1px;
+	border-style: solid;
+	background-color: #fff;
+	border-radius: 2px;
+	padding-right: 30px;
+	cursor: pointer;
+	outline: 0;
+	-webkit-transition: all .3s;
+	box-sizing: border-box;
+}
         </style>
     </head>
     
@@ -27,7 +43,7 @@
                 <a>
                     <cite>订单列表</cite></a>
             </span>
-            <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
+            <a href="${pageContext.request.contextPath}/orderServlet?cmd=findall" class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" title="刷新">
                 <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i>
             </a>
         </div>
@@ -36,21 +52,14 @@
                 <div class="layui-col-md12">
                     <div class="layui-card">
                         <div class="layui-card-body ">
-                            <form class="layui-form layui-col-space5">
+                            <form class="layui-form layui-col-space5" method="post" action="${pageContext.request.contextPath}/orderServlet?cmd=search">
                                 <div class="layui-input-inline layui-show-xs-block">
-                                    <input class="layui-input" placeholder="开始日" name="start" id="start"></div>-
+                                    <input class="layui-input" placeholder="开始日" name="ostart" id="start"></div>-
                                 <div class="layui-input-inline layui-show-xs-block">
-                                    <input class="layui-input" placeholder="截止日" name="end" id="end"></div>
-                   <!--              <div class="layui-input-inline layui-show-xs-block">
-                                    <select name="contrller">
-                                        <option>支付方式</option>
-                                        <option>支付宝</option>
-                                        <option>微信</option>
-                                        <option>货到付款</option></select>
-                                </div> -->
+                                    <input class="layui-input" placeholder="截止日" name="oend" id="end"></div>
                                 <div class="layui-input-inline layui-show-xs-block">
-                                    <select name="contrller">
-                                        <option value="">订单状态</option>
+                                    <select name="ostate" id="ss">
+                                        <option value="5" selected hidden>订单状态</option>
                                         <option value="0">未发货</option>
                                         <option value="1">已发货</option>
                                         <option value="2">已完成</option>
@@ -59,17 +68,17 @@
                                     </select>
                                 </div>
                                 <div class="layui-input-inline layui-show-xs-block">
-                                    <input type="text" name="username" placeholder="订单号" autocomplete="off" class="layui-input"></div>
-                                <div class="layui-input-inline layui-show-xs-block">
-                                    <button class="layui-btn" lay-submit="" lay-filter="sreach">
-                                        <i class="layui-icon">&#xe615;</i></button>
-                                </div>
+                                    <input type="text" name="onumber" placeholder="订单号" autocomplete="off" class="layui-input"></div>
+                                <div class="layui-inline layui-show-xs-block">
+									<input type="submit" class="layui-btn layui-icon"
+										value="&#xe615;" lay-submit="" lay-filter="sreach">
+								</div>
                             </form>
                         </div>
-                        <div class="layui-card-header">
-                            <button class="layui-btn layui-btn-danger" onclick="delAll()">
-                                <i class="layui-icon"></i>批量删除</button>
-						</div>
+<!--                         <div class="layui-card-header">
+                            <button class="layui-btn layui-btn-danger" onclick="return delAll()"><i class="layui-icon"></i>批量删除</button>
+						</div> -->
+						<span>${msg}<span>
 <!--                         <div class="layui-card-body ">
                             <table class="layui-table layui-form">-->
 
@@ -77,9 +86,9 @@
                     <table class="layui-table layui-form">
                         <thead>
                                     <tr>
-                                        <th>
-                                            <input type="checkbox" name="" lay-skin="primary">
-                                        </th>
+                                        <!-- <th>
+                                            <input type="checkbox" name="all" lay-skin="primary">
+                                        </th> -->
                                         <th>订单编号</th>
                                         <th>商品名</th>
                                         <th>购买数量</th>
@@ -92,46 +101,51 @@
                                         <th>操作</th></tr>
                                 </thead>
                         <tbody>
+                        <c:forEach items="${list}" var="orderlist" begin="0" step="1" varStatus="vs">
                         <tr>
+                            <%-- <td>
+                                <input type="checkbox" name="oid" value="${orderlist[0].o_id }"  lay-skin="primary">
+                            </td> --%>
+                            <c:set var="oid" value="${orderlist[0].o_id}" />
                             <td>
-                                <input type="checkbox" name="id" value="1"   lay-skin="primary">
-                            </td>
-                            <td>
-                                1
-                            </td>
-
-                            <td >
-                                华为P30
-                            </td>
-                            <td >
-                                <i class="layui-icon" style="color: #06f957">&#xe605;</i>
-                            </td>
-                            <td >
-                                <i class="layui-icon" style="color: red">&#x1006;</i>
-                            </td>
-                            <td >
-                                <i class="layui-icon" style="color: #06f957">&#xe605;</i>
-                            </td>
-                            <td >
-                                <i class="layui-icon" style="color: red">&#x1006;</i>
+                            	${orderlist[0].o_number}	
                             </td>
                             <td>
-                                2018-01-01 11:11:42
+                                ${orderlist[1].w_name}
+                            </td>								
+                            <td >
+                            	${orderlist[0].o_count}                              	
+                            </td>
+                            <td >
+                                ${orderlist[0].o_price}
+                            </td>
+                            <td >
+                                ${orderlist[0].o_consignee}
+                            </td>
+                            <td >
+                                ${orderlist[2].a_name}
+                            </td>
+                            <td >
+                                ${orderlist[0].o_tel}
+                            </td>
+                            <td>
+                                ${orderlist[0].o_date}
                             </td>
                             <td class="td-status">
-                                600
-                            </td>
-                            <td >
-                                4200
+                                <c:if test="${orderlist[0].o_state==0}">未发货</c:if>
+                                <c:if test="${orderlist[0].o_state==1}">已发货</c:if>
+                                <c:if test="${orderlist[0].o_state==2}">已完成</c:if>
+                                <c:if test="${orderlist[0].o_state==3}">待退款</c:if>
+                                <c:if test="${orderlist[0].o_state==4}">已退款</c:if>
                             </td>
                             <td id="td-manage">
-                                <a title="删除" href="javascript:;" onclick="member_del(this,'1')"
+                                <a title="删除" href="javascript:;" onclick="return deleteorder(${orderlist[0].o_id})"
                                    style="text-decoration:none">
                                     <i class="layui-icon" id="dd">&#xe640;</i>
                                 </a>
                             </td>
                         </tr>
-
+						</c:forEach>
                         </tbody>
                     </table>
                 </div>
@@ -151,101 +165,49 @@
             </div>
         </div>
     </body>
-    <script>layui.use(['laydate', 'form'],
-        function() {
-            var laydate = layui.laydate;
+    <script type="text/javascript">
+    
+    function deleteorder(oid) {
 
-            //执行一个laydate实例
-            laydate.render({
-                elem: '#start' //指定元素
-            });
-
-            //执行一个laydate实例
-            laydate.render({
-                elem: '#end' //指定元素
-            });
-        });
-
-        /*用户-停用*/
-        function member_stop(obj, id) {
-            layer.confirm('确认要停用吗？',
-            function(index) {
-
-                if ($(obj).attr('title') == '启用') {
-
-                    //发异步把用户状态进行更改
-                    $(obj).attr('title', '停用');
-                    $(obj).find('i').jsp('&#xe62f;');
-
-                    $(obj).parents("tr").find(".td-status").find('span').addClass('layui-btn-disabled').jsp('已停用');
-                    layer.msg('已停用!', {
-                        icon: 5,
-                        time: 1000
-                    });
-
-                } else {
-                    $(obj).attr('title', '启用');
-                    $(obj).find('i').jsp('&#xe601;');
-
-                    $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').jsp('已启用');
-                    layer.msg('已启用!', {
-                        icon: 5,
-                        time: 1000
-                    });
-                }
-
-            });
-        }
-
-        /*用户-删除*/
-        function member_del(obj, id) {
-            layer.confirm('确认要删除吗？',
-            function(index) {
-                //发异步删除数据
-                $(obj).parents("tr").remove();
-                layer.msg('已删除!', {
-                    icon: 1,
-                    time: 1000
-                });
-            });
-        }
-
-/*         function delAll(argument) {
-
-            var data = tableCheck.getData();
-
-            layer.confirm('确认要删除吗？' + data,
-            function(index) {
-                //捉到所有被选中的，发异步进行删除
-                layer.msg('删除成功', {
-                    icon: 1
-                });
-                $(".layui-form-checked").not('.header').parents('tr').remove();
-            });
-        } */
-        
-    	function delAll(argument) {
-    		var ids = [];
-
-    		// 获取选中的id
-    		$('tbody input').each(function(index, el) {
-    			if ($(this).prop('checked')) {
-    				ids.push($(this).val())
-    			}
-    		});
-
-    		layer.confirm('确认要删除吗？' + ids.toString(), {
-    			icon : 3,
-    			title : '提示信息'
-    		}, function(index) {
-    			//捉到所有被选中的，发异步进行删除
-    			layer.msg('删除成功', {
-    				icon : 1
-    			});
-    			$(".layui-form-checked").not('.header').parents('tr').remove();
-    		});
+    	/* var oid=${oid}; */
+    	if (confirm("确认删除该商品类型吗？")) {
+    		location.href = "/storesystem/orderServlet?cmd=deleteorder&oid="+ oid;
     	}
-        
+    }
+    
+    		/* layui.use(['laydate','form'], function(){
+    		    var laydate = layui.laydate;
+    		    var  form = layui.form;
+
+
+    		    // 监听全选
+    		    form.on('checkbox(checkall)', function(data){
+
+    		        if(data.elem.checked){
+    		            $('tbody input').prop('checked',true);
+    		        }else{
+    		            $('tbody input').prop('checked',false);
+    		        }
+    		        form.render('checkbox');
+    		    });
+
+    		});
+
+    		function delAll() {
+    			
+    			var str = "";
+    		    $("input[name='oid']").each(function() {
+    		        if($(this).prop("checked") == true) {
+    		            str += ($(this).val() + ",")
+    		        }
+    		    });
+    			
+    			var tid=${tid};
+    			if (confirm("确认删除所选商品类型吗？")) {
+    				location.href = "/storesystem/waretypeServlet?cmd=deletemanytype&tid="+ str;
+    			}
+    		}
+         */
     </script>
 
 </html>

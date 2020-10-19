@@ -41,70 +41,7 @@ public class ManagerServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String cmd=req.getParameter("cmd");
-		if (cmd.equals("findallwares")) {
-			findAllWares(req,resp);
-		}else if(cmd.equals("addware")) {
-			addWare(req,resp);
-		}
-	}
-
-	/**
-	 * 添加商品
-	 * @param req
-	 * @param resp
-	 */
-	private void addWare(HttpServletRequest req, HttpServletResponse resp) {
-		uploadImg(req,resp);
-	}
-
-	/**
-	 * 上传商品图片
-	 * @param req
-	 * @param resp
-	 */
-	private void uploadImg(HttpServletRequest req, HttpServletResponse resp) {
-		boolean isMultipart=ServletFileUpload.isMultipartContent(req);
-		if (isMultipart) {
-			//获取磁盘文件条目列表
-			DiskFileItemFactory factory=new DiskFileItemFactory();
-			//设置上传文件的缓存值
-			factory.setSizeThreshold(1024*1024);
-			//设置文件的缓存区（即临时目录）不建议使用临时目录
-			//该目录内的临时文件使用完毕后会自动删除
-			factory.setRepository(new File(req.getServletContext().getRealPath("/")+"temp"));
-			
-			//创建文件上传对象
-			ServletFileUpload upload=new ServletFileUpload(factory);
-			
-			/**
-			 * 设定上传文件的大小<br>
-			 * 设定单个文件的大小，设定上传文件的总大小等<br>
-			 */
-			
-		}
-			
-	}
-
-	IWareService wareService=new WareService();
-	IWaretypeService waretypeService=new WaretypeService();
-	/**
-	 * 查询所有商品信息 
-	 * @param req
-	 * @param resp
-	 * @throws IOException 
-	 * @throws ServletException 
-	 */
-	private void findAllWares(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		List<Ware> wares=wareService.findAllWares();
-		Map<Ware, String> wareMap=new HashMap<Ware, String>();
-		for (int i = 0; i < wares.size(); i++) {
-			Waretype waretype=waretypeService.findWaretypeById(wares.get(i).getT_id());
-			wareMap.put(wares.get(i), waretype.getT_name());
-		}
-		System.out.println(wareMap);
-		req.setAttribute("wareMap", wareMap);
-		req.getRequestDispatcher("/Manager/goodslist.jsp").forward(req, resp);
+	
 	}
 
 }

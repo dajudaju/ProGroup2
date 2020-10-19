@@ -22,14 +22,14 @@
     <title>小飞猪首页</title>
 
     <!--CSS bundle -->
-    <link rel="stylesheet" media="all" href="css/bootstrap.css" />
-    <link rel="stylesheet" media="all" href="css/animate.css" />
-    <link rel="stylesheet" media="all" href="css/font-awesome.css" />
-    <link rel="stylesheet" media="all" href="css/ion-range-slider.css" />
-    <link rel="stylesheet" media="all" href="css/linear-icons.css" />
-    <link rel="stylesheet" media="all" href="css/magnific-popup.css" />
-    <link rel="stylesheet" media="all" href="css/owl.carousel.css" />
-    <link rel="stylesheet" media="all" href="css/theme.css" />
+    <link rel="stylesheet" media="all" href="${pageContext.request.contextPath }/Customer/css/bootstrap.css" />
+    <link rel="stylesheet" media="all" href="${pageContext.request.contextPath }/Customer/css/animate.css" />
+    <link rel="stylesheet" media="all" href="${pageContext.request.contextPath }/Customer/css/font-awesome.css" />
+    <link rel="stylesheet" media="all" href="${pageContext.request.contextPath }/Customer/css/ion-range-slider.css" />
+    <link rel="stylesheet" media="all" href="${pageContext.request.contextPath }/Customer/css/linear-icons.css" />
+    <link rel="stylesheet" media="all" href="${pageContext.request.contextPath }/Customer/css/magnific-popup.css" />
+    <link rel="stylesheet" media="all" href="${pageContext.request.contextPath }/Customer/css/owl.carousel.css" />
+    <link rel="stylesheet" media="all" href="${pageContext.request.contextPath }/Customer/css/theme.css" />
 
     <!--Google fonts-->
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600" rel="stylesheet">

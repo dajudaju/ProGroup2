@@ -44,7 +44,7 @@ public class OrderService implements IOrderService {
 	}
 
 	@Override
-	public List<Order> findOrdersByDate(Date date1, Date date2) {
+	public List<Order> findOrdersByDate(String date1, String date2) {
 
 		return dao.findOrdersByDate(date1, date2);
 	}
@@ -53,6 +53,42 @@ public class OrderService implements IOrderService {
 	public List<Order> findOrdersByState(int o_state) {
 
 		return dao.findOrdersByState(o_state);
+	}
+
+	@Override
+	public List<Order> findAllOrders() {
+	
+		return dao.findAllOrders();
+	}
+
+	@Override
+	public List<Order> findOrderByDateStateNumber(String date1, String date2, int o_state, int o_number) {
+		// TODO Auto-generated method stub
+		return dao.findOrderByDateStateNumber(date1, date2, o_state, o_number);
+	}
+
+	@Override
+	public List<Order> findOrderByDateState(String date1, String date2, int o_state) {
+		// TODO Auto-generated method stub
+		return dao.findOrderByDateState(date1, date2, o_state);
+	}
+
+	@Override
+	public List<Order> findOrderByDateNumber(String date1, String date2, int o_number) {
+		// TODO Auto-generated method stub
+		return dao.findOrderByDateNumber(date1, date2, o_number);
+	}
+
+	@Override
+	public List<Order> findOrderByStateNumber(int o_state, int o_number) {
+		// TODO Auto-generated method stub
+		return dao.findOrderByStateNumber(o_state, o_number);
+	}
+
+	@Override
+	public List<Order> findOrderByNumber(int onumber) {
+		// TODO Auto-generated method stub
+		return dao.findOrderByNumber(onumber);
 	}
 
 }

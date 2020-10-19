@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,10 +15,10 @@
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="format-detection" content="telephone=no">
 
-        <link rel="stylesheet" href="./css/font.css">
-        <link rel="stylesheet" href="./css/index.css">
-        <script src="./lib/layui/layui.js" charset="utf-8"></script>
-        <script type="text/javascript" src="./js/index.js"></script>
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/Manager/css/font.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/Manager/css/index.css">
+        <script src="${pageContext.request.contextPath}/Manager/lib/layui/layui.js" charset="utf-8"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/Manager/js/index.js"></script>
     </head>
     <body>
 
@@ -26,7 +27,7 @@
 
               <div class="layui-tab-content" >
                 <div class="layui-tab-item layui-show">
-                    <form class="layui-form layui-form-pane" action="" enctype="multipart/form-data">
+                    <form class="layui-form layui-form-pane" action="${pageContext.request.contextPath}/updatewareServlet" method="post" enctype="multipart/form-data">
                 <div class="layui-tab-item layui-show">
                     <!--<form class="layui-form layui-form-pane" action="" id="add">-->
                     <input type="hidden" name="id" value="{$art.id}">
@@ -35,7 +36,7 @@
                             <span class='x-red'>*</span>商品名称
                         </label>
                         <div class="layui-input-block">
-                            <input type="text" name="title" autocomplete="off" value="" placeholder="请输入商品名称"
+                            <input type="text" name="wname" autocomplete="off" value="${ware.w_name}" placeholder="请输入商品名称"
                                    class="layui-input">
                         </div>
                     </div>
@@ -44,7 +45,7 @@
                             <span class='x-red'>*</span>商品价格
                         </label>
                         <div class="layui-input-block">
-                            <input type="text" name="title" autocomplete="off" value="" placeholder="请输入商品价格"
+                            <input type="text" name="wprice" autocomplete="off" value="${ware.w_price }" placeholder="请输入商品价格"
                                    class="layui-input">
                         </div>
                     </div>
@@ -53,11 +54,12 @@
                             <span class='x-red'>*</span>商品类别
                         </label>
                         <div class="layui-input-block">
-                            <select name="article_category_id" id="article_category_id">
-
-                                <option value="0">---请选择商品所属类别---</option>
-                                <option value="0">手机</option>
-
+                            <select name="tid" id="article_category_id">
+								<option  value="${waretype.t_id}" selected hidden>${waretype.t_name}</option>
+									<c:forEach items="${waretypelist}" var="item" begin="0" step="1"
+										varStatus="vs">
+										<option value="${item.t_id}">${item.t_name }</option>
+									</c:forEach>
                             </select>
                         </div>
                     </div>
@@ -66,7 +68,7 @@
                             <span class='x-red'>*</span>商品材料
                         </label>
                         <div class="layui-input-block">
-                            <input type="text" name="title" autocomplete="off" value="" placeholder="请输入商品材料"
+                            <input type="text" name="wmaterial" autocomplete="off" value="${ware.w_material }" placeholder="请输入商品材料"
                                    class="layui-input">
                         </div>
                     </div>
@@ -75,7 +77,7 @@
                             <span class='x-red'>*</span>商品库存
                         </label>
                         <div class="layui-input-block">
-                            <input type="text" name="title" autocomplete="off" value="" placeholder="请输入商品库存"
+                            <input type="text" name="wrepertory" autocomplete="off" value="${ware.w_repertory }" placeholder="请输入商品库存"
                                    class="layui-input">
                         </div>
                     </div>
@@ -84,26 +86,34 @@
                                 <span class='x-red'>*</span>商品描述
                             </label>
                             <div class="layui-input-block">
-                                <textarea placeholder="请输入内容" class="layui-textarea" name="info"></textarea>
+                                <textarea placeholder="请输入内容" class="layui-textarea" name="wdescribe">${ware.w_describe}</textarea>
                             </div>
                     </div>
-                    <div class="layui-form-item imgs" id="imgshow">
+<%--                     <div class="layui-form-item imgs" id="imgshow">
                         <label  class="layui-form-label">商品图片
                         </label>
-                        <img src="images" id="pimages" name="pimages" style="width: 400px;height: 200px;"/>
+                        <img src="${sessionScope.imgpath }/${ware.w_url}" id="pimages" name="wurl" style="width: 400px;height: 200px;"/>
                         <input id="avatar"   name="image" required="" type="hidden"  value="images">
-                    </div>
+                    </div> --%>
                     <div class="layui-form-item">
-                        <label for="link" class="layui-form-label">
-                            <span class="x-red">*</span>更改图片
-                        </label>
-                        <div class="layui-input-inline">
-                            <div class="site-demo-upbar">
-                                <button type="button" class="layui-btn" id="test3"><i class="layui-icon"></i>上传图片</button>
-                            </div>
+							<label for="link" class="layui-form-label"> <span
+								class="x-red">*</span>更改图片
+							</label>
+							<div class="layui-input-inline">
+								<div class="site-demo-upbar" id="image">
+									<button type="button" class="layui-btn" id="img">
+										<i class="layui-icon"></i>选择图片
+									</button>
+									<input type="file" style="display: none;" id="uploadimg"
+										name="wurl"> <br>
+									<br>
+									<span id="imginfo" style="color: skyblue;"></span><br>
+									<br>
+								</div>
+							</div>
+						</div>
                     </div>
-                    </div>
-                        <div class="layui-form-item">
+<!--                         <div class="layui-form-item">
                             <label class="layui-form-label"><span class="x-red">*</span>状态</label>
                             <div class="layui-input-block">
                                 <input type="radio" name="status" value="1" title="激活" >
@@ -115,7 +125,7 @@
                                     <div>禁用</div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="layui-form-item">
                             <button class="layui-btn" lay-submit="" lay-filter="*">
                                 保存
@@ -128,6 +138,20 @@
               </div>
             </div> 
         </div>
+
+<script type="text/javascript">
+window.onload = function() {
+	$('#img').click(function() {
+		$('#uploadimg').click();
+	});
+
+	$("#image").on("change", "#uploadimg", function() {
+		var uploadimg = document.getElementById("uploadimg").value;
+		var imginfo = document.getElementById("imginfo");
+		imginfo.innerHTML = uploadimg;
+	});
+}
+</script>
 
         <script>
             layui.use(['element','layer','form'], function(){

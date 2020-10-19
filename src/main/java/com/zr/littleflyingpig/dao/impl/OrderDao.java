@@ -104,7 +104,7 @@ public class OrderDao implements IOrderDao {
 	}
 
 	@Override
-	public List<Order> findOrdersByDate(Date date1, Date date2) {
+	public List<Order> findOrdersByDate(String date1, String date2) {
 
 		List<Order> list = null;
 		String sql = "select * from tb_order where o_date>? and o_date<?";
@@ -137,6 +137,89 @@ public class OrderDao implements IOrderDao {
 		}
 
 		return list;
+	}
+
+	@Override
+	public List<Order> findAllOrders() {
+		List<Order> orders=null;
+		String sql="select * from tb_order";
+		QueryRunner runner=new QueryRunner(TxDBUtils.getSource());
+		try {
+			return runner.query(sql, new BeanListHandler<Order>(Order.class));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public List<Order> findOrderByDateStateNumber(String date1, String date2, int o_state, int o_number) {
+		List<Order> list=null;
+		String sql="select * from tb_order where o_date > ? and o_date < ? and o_state=? and o_number=?";
+		QueryRunner runner=new QueryRunner(TxDBUtils.getSource());
+		try {
+			list= runner.query(sql, new BeanListHandler<Order>(Order.class),date1,date2,o_state,o_number);
+			if (list!=null) {
+				return list;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public List<Order> findOrderByDateState(String date1, String date2, int o_state) {
+		String sql="select * from tb_order where o_date > ? and o_date < ? and o_state=?";
+		QueryRunner runner=new QueryRunner(TxDBUtils.getSource());
+		try {
+			return runner.query(sql, new BeanListHandler<Order>(Order.class),date1,date2,o_state);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public List<Order> findOrderByDateNumber(String date1, String date2, int o_number) {
+		String sql="select * from tb_order where o_date > ? and o_date < ? and o_number=?";
+		QueryRunner runner=new QueryRunner(TxDBUtils.getSource());
+		try {
+			return runner.query(sql, new BeanListHandler<Order>(Order.class),date1,date2,o_number);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public List<Order> findOrderByStateNumber(int o_state, int o_number) {
+		String sql="select * from tb_order where o_state=? and o_number=?";
+		QueryRunner runner=new QueryRunner(TxDBUtils.getSource());
+		try {
+			return runner.query(sql, new BeanListHandler<Order>(Order.class),o_state,o_number);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public List<Order> findOrderByNumber(int onumber) {
+		String sql="select * from tb_order where o_number=?";
+		QueryRunner runner=new QueryRunner(TxDBUtils.getSource());
+		try {
+			return runner.query(sql, new BeanListHandler<Order>(Order.class),onumber);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }

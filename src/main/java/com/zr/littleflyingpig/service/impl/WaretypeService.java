@@ -48,4 +48,10 @@ public class WaretypeService implements IWaretypeService {
 		return dao.findAllWaretype();
 	}
 
+	@Override
+	public boolean findWareTypeByName(String tname) {
+		// TODO Auto-generated method stub
+		return dao.findWareTypeByName(tname);
+	}
+
 }

@@ -5,7 +5,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>添加商品类型</title>
+    <title>修改商品类型</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
@@ -19,30 +19,30 @@
 <body>
 <div class="layui-fluid">
     <div class="layui-row">
-        <form class="layui-form" method="post" action="${pageContext.request.contextPath}/waretypeServlet?cmd=addtype">
+        <form class="layui-form" method="post" action="${pageContext.request.contextPath}/waretypeServlet?cmd=updatetype&tid=${waretype.t_id}">
             <div class="layui-form-item">
-                <label for="tname" class="layui-form-label">
+                <label for="username" class="layui-form-label">
                     <span class="x-red">*</span>商品类型名称
                 </label>
                 <div class="layui-input-inline">
-                    <input type="text" id="tname" name="tname" required="" lay-verify="required"
-                           autocomplete="off" class="layui-input">
+                    <input type="text" id="username" name="tname" required="" lay-verify="required"
+                           autocomplete="off" class="layui-input" value="${waretype.t_name}">
                 </div>
                 <div class="layui-form-mid layui-word-aux">
                     <span class="x-red">*</span>
                 </div>
+                <span id="msg"></span>
             </div>
             <div class="layui-form-item">
                 <label for="L_repass" class="layui-form-label">
                 </label>
-                <input type="submit" value="添加" class="layui-btn">
+                <input type="submit" class="layui-btn" value="确定"/>
             </div>
         </form>
-        <span style="color:skyblue;">${msg}</span>
     </div>
 </div>
 <script>
-
+    
 </script>
 
 </body>

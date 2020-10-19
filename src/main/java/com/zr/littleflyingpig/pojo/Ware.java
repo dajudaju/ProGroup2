@@ -161,10 +161,9 @@ public class Ware implements Serializable {
 		this.w_state = w_state;
 	}
 
-	@Override
-	public int hashCode() {
-		return super.hashCode();
-	}
+	/*
+	 * @Override public int hashCode() { return super.hashCode(); }
+	 */
 
 	@Override
 	public boolean equals(Object obj) {
@@ -186,6 +185,26 @@ public class Ware implements Serializable {
 		return "Ware [w_id=" + w_id + ", t_id=" + t_id + ", w_name=" + w_name + ", w_brand=" + w_brand + ", w_price="
 				+ w_price + ", w_repertory=" + w_repertory + ", w_url=" + w_url + ", w_material=" + w_material
 				+ ", w_describe=" + w_describe + ", w_sale=" + w_sale + ", w_state=" + w_state + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + t_id;
+		result = prime * result + ((w_brand == null) ? 0 : w_brand.hashCode());
+		result = prime * result + ((w_describe == null) ? 0 : w_describe.hashCode());
+		result = prime * result + w_id;
+		result = prime * result + ((w_material == null) ? 0 : w_material.hashCode());
+		result = prime * result + ((w_name == null) ? 0 : w_name.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(w_price);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + w_repertory;
+		result = prime * result + w_sale;
+		result = prime * result + w_state;
+		result = prime * result + ((w_url == null) ? 0 : w_url.hashCode());
+		return result;
 	}
 
 }

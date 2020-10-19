@@ -75,12 +75,12 @@
                             <i class="iconfont nav_right">&#xe697;</i></a>
                         <ul class="sub-menu">
                             <li>
-                                <a onclick="xadmin.add_tab('商品列表','${pageContext.request.contextPath}/managerServlet?cmd=findallwares')">
+                                <a onclick="xadmin.add_tab('商品列表','${pageContext.request.contextPath}/wareServlet?cmd=findallwares')">
                                     <i class="iconfont">&#xe6a7;</i>
                                     <cite>商品列表</cite></a>
                             </li>
                             <li>
-                                <a onclick="xadmin.add_tab('商品类型','goodstype.jsp')">
+                                <a onclick="xadmin.add_tab('商品类型','${pageContext.request.contextPath}/waretypeServlet?cmd=findall')">
                                     <i class="iconfont">&#xe6a7;</i>
                                     <cite>商品类型</cite></a>
                             </li>
@@ -95,17 +95,17 @@
                             <i class="iconfont nav_right">&#xe697;</i></a>
                         <ul class="sub-menu">
                             <li>
-                                <a onclick="xadmin.add_tab('订单列表','order-list.jsp')">
+                                <a onclick="xadmin.add_tab('订单列表','${pageContext.request.contextPath}/orderServlet?cmd=findall')">
                                     <i class="iconfont">&#xe6a7;</i>
                                     <cite>订单列表</cite></a>
                             </li>
                             <li>
-                                <a onclick="xadmin.add_tab('待发货列表','invoice.jsp')">
+                                <a onclick="xadmin.add_tab('待发货列表','${pageContext.request.contextPath}/orderServlet?cmd=findinvoice&state=0')">
                                     <i class="iconfont">&#xe6a7;</i>
                                     <cite>待发货列表</cite></a>
                             </li>
                             <li>
-                                <a onclick="xadmin.add_tab('待退款列表','return-order.jsp')">
+                                <a onclick="xadmin.add_tab('待退款列表','${pageContext.request.contextPath}/orderServlet?cmd=findreturn&state=3')">
                                     <i class="iconfont">&#xe6a7;</i>
                                     <cite>待退款列表</cite></a>
                             </li>

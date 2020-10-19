@@ -1,17 +1,16 @@
-package com.zr.littleflyingpig.service;
+package com.zr.littleflyingpig.dao;
 
 import java.util.List;
 
 import com.zr.littleflyingpig.pojo.Ware;
 
 /**
- * 商品服务接口，包含一系列商品的处理方法。<br>
- * Ware：商品的实体类，根据数据库中tb_ware表建立
+ * 商品dao接口，包含一系列商品的处理方法。
  * 
  * @author 幻想
  *
  */
-public interface IWareService {
+public interface IWareDao {
 	/**
 	 * 添加商品
 	 * 
@@ -29,13 +28,6 @@ public interface IWareService {
 	boolean updateWare(Ware ware);
 
 	/**
-	 * 根据商品id修改商品状态
-	 * @param ware
-	 * @return
-	 */
-	boolean updateWareStateById(Ware ware);
-	
-	/**
 	 * 根据商品id删除商品信息
 	 * 
 	 * @param w_id int类型，商品id
@@ -44,13 +36,7 @@ public interface IWareService {
 	boolean deleteWare(int w_id);
 
 	/**
-	 * 查询所有商品信息
-	 * @return 一个Ware对象的集合
-	 */
-	List<Ware> findAllWares();
-	
-	/**
-	 * 根据商品id查询商品信息
+	 * 根据商品id删除商品信息
 	 * 
 	 * @param w_id int类型，商品id
 	 * @return 一个Ware对象
@@ -107,5 +93,23 @@ public interface IWareService {
 	 * @return 一个Ware对象的集合
 	 */
 	List<Ware> findWaresByTypeAndPrice(int t_id, double low, double high);
+
+	/**
+<<<<<<< HEAD
+	 * 查询所有商品信息
+=======
+	 * 查询所有商品
+	 * 
+>>>>>>> branch 'master' of https://github.com/dajudaju/ProGroup2.git
+	 * @return 一个Ware对象的集合
+	 */
+	List<Ware> findAllWares();
+
+	/**
+	 * 根据id修改商品状态
+	 * @param ware
+	 * @return
+	 */
+	boolean updateWareStateById(Ware ware);
 
 }

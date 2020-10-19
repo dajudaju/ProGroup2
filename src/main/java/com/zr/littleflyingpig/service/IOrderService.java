@@ -53,7 +53,7 @@ public interface IOrderService {
 	 * @param date2 Date类型，日期区间的高位日期
 	 * @return 一个Order对象的集合
 	 */
-	List<Order> findOrdersByDate(Date date1, Date date2);
+	List<Order> findOrdersByDate(String date1, String date2);
 
 	/**
 	 * 根据订单的状态查询订单
@@ -62,4 +62,57 @@ public interface IOrderService {
 	 * @return 一个Order对象的集合
 	 */
 	List<Order> findOrdersByState(int o_state);
+	
+	/**
+	 * 查询所有订单信息
+	 * @return
+	 */
+	List<Order> findAllOrders();
+	
+	/**
+	 * 根据订单编号、时间、状态查询订单
+	 * @param date1
+	 * @param date2
+	 * @param o_state
+	 * @param o_number
+	 * @return
+	 */
+	List<Order> findOrderByDateStateNumber(String date1, String date2,int o_state,int o_number);
+	
+	/**
+	 * 根据时间、状态查询订单
+	 * @param date1
+	 * @param date2
+	 * @param o_state
+	 * @param o_number
+	 * @return
+	 */
+	List<Order> findOrderByDateState(String date1, String date2,int o_state);
+	
+	/**
+	 * 根据订单编号、时间查询订单
+	 * @param date1
+	 * @param date2
+	 * @param o_state
+	 * @param o_number
+	 * @return
+	 */
+	List<Order> findOrderByDateNumber(String date1, String date2,int o_number);
+	
+	/**
+	 * 根据订单编号、状态查询订单
+	 * @param date1
+	 * @param date2
+	 * @param o_state
+	 * @param o_number
+	 * @return
+	 */
+	List<Order> findOrderByStateNumber(int o_state,int o_number);
+
+	/**
+	 * 根据订单编号查询
+	 * @param onumber
+	 * @return
+	 */
+	List<Order> findOrderByNumber(int onumber);
 }
