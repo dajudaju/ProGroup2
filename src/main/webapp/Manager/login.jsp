@@ -3,15 +3,18 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 	Cookie[] cookies = request.getCookies();
-	for (int i = 0; i < cookies.length; i++) {
-		if(cookies[i].getName().equals("manager-pwd")){
-			String m_name = cookies[i].getValue().split("-")[0];
-			String m_password = cookies[i].getValue().split("-")[1];
-			request.setAttribute("m_name", m_name);
-			request.setAttribute("m_password", m_password);
-			break;
+	if(cookies != null && cookies.length != 0){
+		for (int i = 0; i < cookies.length; i++) {
+			if(cookies[i].getName().equals("manager-pwd")){
+				String m_name = cookies[i].getValue().split("-")[0];
+				String m_password = cookies[i].getValue().split("-")[1];
+				request.setAttribute("m_name", m_name);
+				request.setAttribute("m_password", m_password);
+				break;
+			}
 		}
 	}
+	
 %>
 <!DOCTYPE html>
 <html>

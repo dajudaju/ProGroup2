@@ -4,6 +4,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,14 +24,14 @@
     <title>小飞猪首页</title>
 
     <!--CSS bundle -->
-    <link rel="stylesheet" media="all" href="css/bootstrap.css" />
-    <link rel="stylesheet" media="all" href="css/animate.css" />
-    <link rel="stylesheet" media="all" href="css/font-awesome.css" />
-    <link rel="stylesheet" media="all" href="css/ion-range-slider.css" />
-    <link rel="stylesheet" media="all" href="css/linear-icons.css" />
-    <link rel="stylesheet" media="all" href="css/magnific-popup.css" />
-    <link rel="stylesheet" media="all" href="css/owl.carousel.css" />
-    <link rel="stylesheet" media="all" href="css/theme.css" />
+    <link rel="stylesheet" media="all" href="${pageContext.request.contextPath}/customer/css/bootstrap.css" />
+    <link rel="stylesheet" media="all" href="${pageContext.request.contextPath}/customer/css/animate.css" />
+    <link rel="stylesheet" media="all" href="${pageContext.request.contextPath}/customer/css/font-awesome.css" />
+    <link rel="stylesheet" media="all" href="${pageContext.request.contextPath}/customer/css/ion-range-slider.css" />
+    <link rel="stylesheet" media="all" href="${pageContext.request.contextPath}/customer/css/linear-icons.css" />
+    <link rel="stylesheet" media="all" href="${pageContext.request.contextPath}/customer/css/magnific-popup.css" />
+    <link rel="stylesheet" media="all" href="${pageContext.request.contextPath}/customer/css/owl.carousel.css" />
+    <link rel="stylesheet" media="all" href="${pageContext.request.contextPath}/customer/css/theme.css" />
 
     <!--Google fonts-->
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600" rel="stylesheet">
@@ -51,7 +53,7 @@
 
         <div class="container">
 
-            <a href="index.jsp" class="logo"><img src="assets/images/divano-logo.svg" alt=""  width="130" height="55"/></a>
+            <a href="${pageContext.request.contextPath}/customer/index.jsp" class="logo"><img src="${pageContext.request.contextPath}/customer/assets/images/divano-logo.svg" alt=""  width="130" height="55"/></a>
 
             <!-- ==========  Top navigation ========== -->
 
@@ -60,7 +62,7 @@
                     <!--add active class for current page-->
                     <!-- <li class="left-side"><a href="index.html" class="logo-icon"><img src="assets/images/littleflypig2.jpg" alt="Alternate Text" width="150" height="34"/></a></li> -->
                     <li class="left-side"><a href="#">小飞猪</a></li>
-                    <li class="left-side"><a href="about.jsp">关于我们</a></li>
+                    <li class="left-side"><a href="${pageContext.request.contextPath}/customer/about.jsp">关于我们</a></li>
                     <li><a href="javascript:void(0);" class="open-login"><i class="icon icon-user"></i></a></li>
                     <li><a href="javascript:void(0);" class="open-search"><i class="icon icon-magnifier"></i></a></li>
                     <li><a href="javascript:void(0);" class="open-cart"><i class="icon icon-cart"></i> </a></li>
@@ -82,17 +84,17 @@
                     </div>
                     <ul>
                         <li>
-                            <a href="mynews.jsp">我的消息 </a>
+                            <a href="${pageContext.request.contextPath}/customer/mynews.jsp">我的消息 </a>
                         </li>
                         <li>
-                            <a href="myshoucnag.jsp">我的收藏</a>
+                            <a href="${pageContext.request.contextPath}/customer/myshoucnag.jsp">我的收藏</a>
                         </li>
                         <li>
-                            <a href="mydingdan.jsp">我的订单</a>
+                            <a href="${pageContext.request.contextPath}/customer/mydingdan.jsp">我的订单</a>
                             
                         </li>
                         <li>
-                            <a href="checkout1.jsp">我的购物车</a>
+                            <a href="${pageContext.request.contextPath}/customer/checkout1.jsp">我的购物车</a>
                             
                         </li>
                         <li>
@@ -137,19 +139,18 @@
             <!-- ==========  Login wrapper ========== -->
 
             <div class="login-wrapper">
-                <div class="h5">Sign in</div>
+                <div class="h5">登录即享更多功能</div>
                 <form action="${pageContext.request.contextPath }/customerServlet?cmd=login" method="post">
                     <div class="form-group">
-                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                        <input type="text" name="customer" class="form-control" id="exampleInputEmail1" placeholder="customer">
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                     </div>
                     <div class="form-group">
-                        <a href="#forgotpassword" class="open-popup btn btn-main btn-sm">Forgot password?</a>
-                        <a href="#createaccount" class="open-popup btn btn-main btn-sm">Don't have an account?</a>
+                        <a href="#createaccount" class="open-popup btn btn-main btn-sm">没有账号去注册</a>
                     </div>
-                    <button type="submit" class="btn btn-block btn-outline-primary">Submit</button>
+                    <button type="submit" class="btn btn-block btn-outline-primary">登录</button>
                 </form>
             </div>
 
@@ -227,11 +228,11 @@
     </nav>
 
 
-    <div class="page-loader">
+    <!-- <div class="page-loader">
         <div class="spinner-border" role="status">
-            <span class="sr-only">Loading...</span>
+            <span class="sr-only">加载中...</span>
         </div>
-    </div>
+    </div> -->
 
     <div class="wrapper">
 
@@ -249,7 +250,7 @@
 
                     <!--Slide item-->
 
-                    <div class="item d-flex align-items-center" style="background-image:url(assets/images/slide-2.jpg)">
+                    <div class="item d-flex align-items-center" style="background-image:url(${pageContext.request.contextPath}/customer/assets/images/slide-2.jpg)">
                         <div class="container">
                             <div class="caption">
                                 <div class="animated" data-start="fadeInUp">
@@ -283,7 +284,7 @@
 
                     <!--Slide item-->
 
-                    <div class="item d-flex align-items-center" style="background-image:url(assets/images/slide-1.jpg)">
+                    <div class="item d-flex align-items-center" style="background-image:url(${pageContext.request.contextPath}/customer/assets/images/slide-1.jpg)">
                         <div class="container">
                             <div class="caption">
                                 <div class="animated" data-start="fadeInUp">
@@ -318,7 +319,7 @@
 
                     <!--Slide item-->
 
-                    <div class="item d-flex align-items-center" style="background-image:url(assets/images/slide-3.jpg)">
+                    <div class="item d-flex align-items-center" style="background-image:url(${pageContext.request.contextPath}/customer/assets/images/slide-3.jpg)">
                         <div class="container">
                             <div class="caption">
                                 <div class="promo text-center">
@@ -348,28 +349,20 @@
 
                     <div class="owl-icons owl-carousel owl-theme" data-icons-sm="3" data-icons-md="4" data-icons-lg="8">
 
-                        <a href="products-gird-shafa.jsp">
+                        <a href="${pageContext.request.contextPath}/customer/products-gird-shafa.jsp">
                             <figure>
                                 <div class="image">
-                                    <img src="assets/icons/icon-sofa.svg" alt="Alternate Text" />
+                                    <img src="${pageContext.request.contextPath}/customer/assets/icons/icon-sofa.svg" alt="Alternate Text" />
                                 </div>
                                 <figcaption>沙发</figcaption>
                             </figure>
                         </a>
 
-                        <!-- <a href="#">
+                 
+                        <a href="${pageContext.request.contextPath}/customer/products-gird-yizi.jsp">
                             <figure>
                                 <div class="image">
-                                    <img src="assets/icons/icon-armchair.svg" alt="Alternate Text" />
-                                </div>
-                                <figcaption>Armchairs</figcaption>
-                            </figure>
-                        </a> -->
-
-                        <a href="products-gird-yizi.jsp">
-                            <figure>
-                                <div class="image">
-                                    <img src="assets/icons/icon-chair.svg" alt="Alternate Text" />
+                                    <img src="${pageContext.request.contextPath}/customer/assets/icons/icon-chair.svg" alt="Alternate Text" />
                                 </div>
                                 <figcaption>椅子</figcaption>
                             </figure>
@@ -378,7 +371,7 @@
                         <a href="products-gird-canzhuo.jsp">
                             <figure>
                                 <div class="image">
-                                    <img src="assets/icons/icon-dining.svg" alt="Alternate Text" />
+                                    <img src="${pageContext.request.contextPath}/customer/assets/icons/icon-dining.svg" alt="Alternate Text" />
                                 </div>
                                 <figcaption>餐桌</figcaption>
                             </figure>
@@ -387,7 +380,7 @@
                         <a href="products-gird-chufang.jsp">
                             <figure>
                                 <div class="image">
-                                    <img src="assets/icons/icon-kitchen.svg" alt="Alternate Text" />
+                                    <img src="${pageContext.request.contextPath}/customer/assets/icons/icon-kitchen.svg" alt="Alternate Text" />
                                 </div>
                                 <figcaption>厨房</figcaption>
                             </figure>
@@ -397,7 +390,7 @@
                         <a href="#">
                             <figure>
                                 <div class="image">
-                                    <img src="assets/icons/icon-mediacabinet.svg" alt="Alternate Text" />
+                                    <img src="${pageContext.request.contextPath}/customer/assets/icons/icon-mediacabinet.svg" alt="Alternate Text" />
                                 </div>
                                 <figcaption>媒体存储</figcaption>
                             </figure>
@@ -406,7 +399,7 @@
                         <a href="#">
                             <figure>
                                 <div class="image">
-                                    <img src="assets/icons/icon-table.svg" alt="Alternate Text" />
+                                    <img src="${pageContext.request.contextPath}/customer/assets/icons/icon-table.svg" alt="Alternate Text" />
                                 </div>
                                 <figcaption>桌子</figcaption>
                             </figure>
@@ -415,7 +408,7 @@
                         <a href="#">
                             <figure>
                                 <div class="image">
-                                    <img src="assets/icons/icon-bookcase.svg" alt="Alternate Text" />
+                                    <img src="${pageContext.request.contextPath}/customer/assets/icons/icon-bookcase.svg" alt="Alternate Text" />
                                 </div>
                                 <figcaption>书柜</figcaption>
                             </figure>
@@ -424,7 +417,7 @@
                         <a href="#">
                             <figure>
                                 <div class="image">
-                                    <img src="assets/icons/icon-bedroom.svg" alt="Alternate Text" />
+                                    <img src="${pageContext.request.contextPath}/customer/assets/icons/icon-bedroom.svg" alt="Alternate Text" />
                                 </div>
                                 <figcaption>卧室</figcaption>
                             </figure>
@@ -433,7 +426,7 @@
                         <a href="#">
                             <figure>
                                 <div class="image">
-                                    <img src="assets/icons/icon-nightstand.svg" alt="Alternate Text" />
+                                    <img src="${pageContext.request.contextPath}/customer/assets/icons/icon-nightstand.svg" alt="Alternate Text" />
                                 </div>
                                 <figcaption>床头柜</figcaption>
                             </figure>
@@ -442,7 +435,7 @@
                         <a href="#">
                             <figure>
                                 <div class="image">
-                                    <img src="assets/icons/icon-kidsroom.svg" alt="Alternate Text" />
+                                    <img src="${pageContext.request.contextPath}/customer/ssets/icons/icon-kidsroom.svg" alt="Alternate Text" />
                                 </div>
                                 <figcaption>儿童</figcaption>
                             </figure>
@@ -451,7 +444,7 @@
                         <a href="#">
                             <figure>
                                 <div class="image">
-                                    <img src="assets/icons/icon-bathroom.svg" alt="Alternate Text" />
+                                    <img src="${pageContext.request.contextPath}/customer/assets/icons/icon-bathroom.svg" alt="Alternate Text" />
                                 </div>
                                 <figcaption>浴室</figcaption>
                             </figure>
@@ -460,7 +453,7 @@
                         <a href="#">
                             <figure>
                                 <div class="image">
-                                    <img src="assets/icons/icon-wardrobe.svg" alt="Alternate Text" />
+                                    <img src="${pageContext.request.contextPath}/customer/assets/icons/icon-wardrobe.svg" alt="Alternate Text" />
                                 </div>
                                 <figcaption>衣柜</figcaption>
                             </figure>
@@ -469,7 +462,7 @@
                         <a href="#">
                             <figure>
                                 <div class="image">
-                                    <img src="assets/icons/icon-shocabinet.svg" alt="Alternate Text" />
+                                    <img src="${pageContext.request.contextPath}/customer/assets/icons/icon-shocabinet.svg" alt="Alternate Text" />
                                 </div>
                                 <figcaption>鞋柜</figcaption>
                             </figure>
@@ -478,7 +471,7 @@
                         <a href="#">
                             <figure>
                                 <div class="image">
-                                    <img src="assets/icons/icon-office.svg" alt="Alternate Text" />
+                                    <img src="${pageContext.request.contextPath}/customer/assets/icons/icon-office.svg" alt="Alternate Text" />
                                 </div>
                                 <figcaption>办公室</figcaption>
                             </figure>
@@ -487,7 +480,7 @@
                         <a href="#">
                             <figure>
                                 <div class="image">
-                                    <img src="assets/icons/icon-barset.svg" alt="Alternate Text" />
+                                    <img src="${pageContext.request.contextPath}/customer/assets/icons/icon-barset.svg" alt="Alternate Text" />
                                 </div>
                                 <figcaption>酒吧套</figcaption>
                             </figure>
@@ -496,7 +489,7 @@
                         <a href="#">
                             <figure>
                                 <div class="image">
-                                    <img src="assets/icons/icon-light.svg" alt="Alternate Text" />
+                                    <img src="${pageContext.request.contextPath}/customer/assets/icons/icon-light.svg" alt="Alternate Text" />
                                 </div>
                                 <figcaption>灯具</figcaption>
                             </figure>
@@ -505,7 +498,7 @@
                         <a href="#">
                             <figure>
                                 <div class="image">
-                                    <img src="assets/icons/icon-carpet.svg" alt="Alternate Text" />
+                                    <img src="${pageContext.request.contextPath}/customer/assets/icons/icon-carpet.svg" alt="Alternate Text" />
                                 </div>
                                 <figcaption>地毯</figcaption>
                             </figure>
@@ -514,7 +507,7 @@
                         <a href="#">
                             <figure>
                                 <div class="image">
-                                    <img src="assets/icons/icon-accessories.svg" alt="Alternate Text" />
+                                    <img src="${pageContext.request.contextPath}/customer/assets/icons/icon-accessories.svg" alt="Alternate Text" />
                                 </div>
                                 <figcaption>配饰</figcaption>
                             </figure>
@@ -534,10 +527,11 @@
 
             <header>
                 <div class="container">
-                    <h2 class="title">人气商品</h2>
+                    <h2 class="title" action="${pageContext.request.contextPath }/customerServlet?cmd=findallware">人气商品</h2>
+                     <a href="${pageContext.request.contextPath }/customerServlet?cmd=findallware">点击刷新商品数据</a>
                     <div class="text">
                         <p>
-                            找到完美搭配 <a href="products-grid.jsp" class="btn btn-main">所有商品</a>
+                            找到完美搭配 <a href="${pageContext.request.contextPath}/customer/products-grid.jsp" class="btn btn-main">所有商品</a>
                         </p>
                     </div>
                 </div>
@@ -570,13 +564,13 @@
                             </div>
                             <div class="figure-grid">
                                 <div class="image">
-                                    <a href="product.jsp">
-                                        <img src="assets/images/product-10.jpg" alt="" />
+                                    <a href="${pageContext.request.contextPath}/customer/product.jsp">
+                                        <img src="${pageContext.request.contextPath}/customer/assets/images/product-10.jpg" alt="" />
                                     </a>
                                 </div>
                                 <div class="text">
                                     <h2 class="title h4">
-                                        <a href="product.jsp">Anna</a>
+                                        <a href="${pageContext.request.contextPath}/customer/product.jsp">Anna</a>
                                     </h2>
                                     <!-- <sub>$ 159,-</sub> -->
                                     <sup>$ 139 </sup> 
@@ -584,6 +578,45 @@
                             </div>
                         </article>
                     </div>
+                    <c:forEach items="${listware }" var="u" begin="0" step="1"
+											varStatus="vs">
+											
+						<div class="col-6 col-lg-4">
+                        <article>
+                            <div class="info">
+                                <span class="add-">
+                                    <a href="javascrifavoritept:void(0);" data-title="Add to favorites" data-title-added="Added to favorites list">
+                                        <i class="icon icon-heart"></i>
+                                    </a>
+                                </span>
+                                <span>
+                                    <a href="#productid1" class="mfp-open" data-title="Quick wiew">
+                                        <i class="icon icon-eye"></i>
+                                    </a>
+                                </span>
+                            </div>
+                            <div class="btn btn-add">
+                                <i class="icon icon-cart"></i>
+                            </div>
+                            <div class="figure-grid">
+                                <div class="image">
+                                    <a href="${pageContext.request.contextPath}/customer/product.jsp">
+                                        <img src=${pageContext.request.contextPath}/customer/assets/images/box-4.jpg />
+                                    </a>
+                                </div>
+                                <div class="text">
+                                    <h2 class="title h4">
+                                        <a href="${pageContext.request.contextPath}/customer/product.jsp">${ u.w_name}</a>
+                                    </h2>
+                                    <!-- <sub>$ 159,-</sub> -->
+                                    <sup>${u.w_price}</sup> 
+                                </div>
+                            </div>
+                        </article>
+                    </div>					
+											
+											
+										</c:forEach>
                 </div> <!--/row-->
 
             </div>
@@ -610,8 +643,8 @@
                 <!--Product gallery-->
 
                 <div class="owl-product-gallery owl-theme owl-carousel">
-                    <img src="assets/images/item-1.jpg" alt="" width="640" />
-                    <img src="assets/images/item-2.jpg" alt="" width="640" />
+                    <img src="${pageContext.request.contextPath}/customer/assets/images/item-1.jpg" alt="" width="640" />
+                    <img src="${pageContext.request.contextPath}/customer/assets/images/item-2.jpg" alt="" width="640" />
                 </div>
 
                 <!--Popup info-->
@@ -657,7 +690,7 @@
                     </div>
                     <div class="popup-cell">
                         <div class="popup-buttons">
-                            <a href="product.jsp"><span class="icon icon-eye"></span> <span class="hidden-xs">了解更多</span></a>
+                            <a href="${pageContext.request.contextPath}/customer/product.jsp"><span class="icon icon-eye"></span> <span class="hidden-xs">了解更多</span></a>
                             <!-- <a href="javascript:void(0);"><span class="icon icon-cart"></span> <span class="hidden-xs">添加购物车</span></a> -->
                         </div>
                     </div>
@@ -693,8 +726,8 @@
 
                     <div class="col-lg-8">
                         <figure>
-                            <figcaption style="background-image:url(assets/images/box-1.jpg)">
-                                <img src="assets/images/box-1.jpg" alt="" />
+                            <figcaption style="background-image:url(${pageContext.request.contextPath}/customer/assets/images/box-1.jpg)">
+                                <img src="${pageContext.request.contextPath}/customer/assets/images/box-1.jpg" alt="" />
                             </figcaption>
                             <a href="#interiorId1" class="btn btn-clean">Open up for easy living</a>
                         </figure>
@@ -704,43 +737,10 @@
 
                     <div class="col-lg-4">
                         <figure>
-                            <figcaption style="background-image:url(assets/images/box-2.jpg)">
-                                <img src="assets/images/box-2.jpg" alt="" />
+                            <figcaption style="background-image:url(${pageContext.request.contextPath}/customer/assets/images/box-2.jpg)">
+                                <img src="${pageContext.request.contextPath}/customer/assets/images/box-2.jpg" alt="" />
                             </figcaption>
                             <a href="#interiorId1" class="btn btn-clean">Traditional looks</a>
-                        </figure>
-                    </div>
-
-                    <!--Item-->
-
-                    <div class="col-lg-4">
-                        <figure>
-                            <figcaption style="background-image:url(assets/images/box-3.jpg)">
-                                <img src="assets/images/box-3.jpg" alt="" />
-                            </figcaption>
-                            <a href="#interiorId1" class="btn btn-clean">Sleek and sustainable</a>
-                        </figure>
-                    </div>
-
-                    <!--Item-->
-
-                    <div class="col-lg-4">
-                        <figure>
-                            <figcaption style="background-image:url(assets/images/box-4.jpg)">
-                                <img src="assets/images/box-4.jpg" alt="" />
-                            </figcaption>
-                            <a href="#interiorId1" class="btn btn-clean">Compact living</a>
-                        </figure>
-                    </div>
-
-                    <!--Item-->
-
-                    <div class="col-lg-4">
-                        <figure>
-                            <figcaption style="background-image:url(assets/images/box-5.jpg)">
-                                <img src="assets/images/box-5.jpg" alt="" />
-                            </figcaption>
-                            <a href="#interiorId1" class="btn btn-clean">Classic design</a>
                         </figure>
                     </div>
 
@@ -779,8 +779,8 @@
 
                     <div class="col-md-12 col-lg-4">
                         <article>
-                            <a href="article.jsp" class="blog-link">
-                                <div class="image" style="background-image:url(assets/images/product-1.jpg)">
+                            <a href="${pageContext.request.contextPath}/customer/article.jsp" class="blog-link">
+                                <div class="image" style="background-image:url(${pageContext.request.contextPath}/customer/assets/images/product-1.jpg)">
                                     <img src="assets/images/product-1.jpg" alt="" />
                                 </div>
                                 <div class="entry entry-table">
@@ -803,9 +803,9 @@
 
                     <div class="col-md-12 col-lg-4">
                         <article>
-                            <a href="article.jsp" class="blog-link">
-                                <div class="image" style="background-image:url(assets/images/product-2.jpg)">
-                                    <img src="assets/images/product-2.jpg" alt="" />
+                            <a href="${pageContext.request.contextPath}/customer/article.jsp" class="blog-link">
+                                <div class="image" style="background-image:url(${pageContext.request.contextPath}/customer/assets/images/product-2.jpg)">
+                                    <img src="${pageContext.request.contextPath}/customer/assets/images/product-2.jpg" alt="" />
                                 </div>
                                 <div class="entry entry-table">
                                     <div class="date-wrapper">
@@ -828,8 +828,8 @@
                     <div class="col-md-12 col-lg-4">
                         <article>
                             <a href="article.jsp" class="blog-link">
-                                <div class="image" style="background-image:url(assets/images/product-3.jpg)">
-                                    <img src="assets/images/product-3.jpg" alt="" />
+                                <div class="image" style="background-image:url(${pageContext.request.contextPath}/customer/assets/images/product-3.jpg)">
+                                    <img src="${pageContext.request.contextPath}/customer/assets/images/product-3.jpg" alt="" />
                                 </div>
                                 <div class="entry entry-table">
                                     <div class="date-wrapper">
@@ -859,7 +859,6 @@
 
             <div class="container-fluid">
 
-                <div class="banner-image" style="background-image:url(assets/images/gallery-1.jpg)">
                     <!--Header-->
 
                     <header>
@@ -910,22 +909,22 @@
 
                 <div class="gallery clearfix">
                     <a class="item" >
-                        <img src="assets/images/product-1.jpg" alt="Alternate Text">
+                        <img src="${pageContext.request.contextPath}/customer/assets/images/product-1.jpg" alt="Alternate Text">
                     </a>
                     <a class="item" >
-                        <img src="assets/images/product-2.jpg" alt="Alternate Text">
+                        <img src="${pageContext.request.contextPath}/customer/assets/images/product-2.jpg" alt="Alternate Text">
                     </a>
                     <a class="item" >
-                        <img src="assets/images/product-3.jpg" alt="Alternate Text">
+                        <img src="${pageContext.request.contextPath}/customer/assets/images/product-3.jpg" alt="Alternate Text">
                     </a>
                     <a class="item" >
-                        <img src="assets/images/product-4.jpg" alt="Alternate Text">
+                        <img src="${pageContext.request.contextPath}/customer/assets/images/product-4.jpg" alt="Alternate Text">
                     </a>
                     <a class="item" >
-                        <img src="assets/images/product-5.jpg" alt="Alternate Text">
+                        <img src="${pageContext.request.contextPath}/customer/assets/images/product-5.jpg" alt="Alternate Text">
                     </a>
                     <a class="item" >
-                        <img src="assets/images/product-6.jpg" alt="Alternate Text">
+                        <img src="${pageContext.request.contextPath}/customer/assets/images/product-6.jpg" alt="Alternate Text">
                     </a>
                 </div> <!--/gallery-->
 
@@ -1103,16 +1102,16 @@
 
     </div> <!--/wrapper-->
     <!--Scripts -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/include.js"></script>
-    <script src="js/ion.rangeSlider.js"></script>
-    <script src="js/magnific-popup.js"></script>
-    <script src="js/owl.carousel.js"></script>
-    <script src="js/tilt.jquery.js"></script>
-    <script src="js/jquery.easypiechart.js"></script>
-    <script src="js/bigtext.js"></script>
-    <script src="js/main.js"></script>
+    <script src="${pageContext.request.contextPath}/customer/js/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/customer/js/bootstrap.js"></script>
+    <script src="${pageContext.request.contextPath}/customer/js/include.js"></script>
+    <script src="${pageContext.request.contextPath}/customer/js/ion.rangeSlider.js"></script>
+    <script src="${pageContext.request.contextPath}/customer/js/magnific-popup.js"></script>
+    <script src="${pageContext.request.contextPath}/customer/js/owl.carousel.js"></script>
+    <script src="${pageContext.request.contextPath}/customer/js/tilt.jquery.js"></script>
+    <script src="${pageContext.request.contextPath}/customer/js/jquery.easypiechart.js"></script>
+    <script src="${pageContext.request.contextPath}/customer/js/bigtext.js"></script>
+    <script src="${pageContext.request.contextPath}/customer/js/main.js"></script>
 </body>
 
 <!-- ==================  Navigation (main menu) ================== -->

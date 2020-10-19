@@ -70,7 +70,6 @@ public class ManagerServlet extends HttpServlet {
 			//修改成功
 			resp.getWriter().write("<script>parent.location.href ='Manager/login.jsp';</script>");
 			
-			
 		}else {
 			//修改失败
 			System.out.println("修改失败!");

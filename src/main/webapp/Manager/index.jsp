@@ -119,7 +119,7 @@
                         <ul class="sub-menu">
 
                             <li>
-                                <a onclick="xadmin.add_tab('用户列表','member-list.jsp')">
+                                <a onclick="xadmin.add_tab('用户列表','customerServlet?cmd=findAll')">
                                     <i class="iconfont">&#xe6a7;</i>
                                     <cite>用户列表</cite></a>
                             </li>
@@ -132,7 +132,7 @@
                             <i class="iconfont nav_right">&#xe697;</i></a>
                         <ul class="sub-menu">
                             <li>
-                                <a onclick="xadmin.add_tab('评论列表','note.jsp')">
+                                <a onclick="xadmin.add_tab('评论列表','discussServlet?cmd=findAll')">
                                     <i class="iconfont">&#xe6a7;</i>
                                     <cite>评论列表</cite></a>
                             </li>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html class="x-admin-sm">
     <head>
@@ -8,10 +9,10 @@
         <meta name="renderer" content="webkit">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
-        <link rel="stylesheet" href="./css/font.css">
-        <link rel="stylesheet" href="./css/index.css">
-        <script src="./lib/layui/layui.js" charset="utf-8"></script>
-        <script type="text/javascript" src="./js/index.js"></script>
+        <link rel="stylesheet" href="${pageContext.request.contextPath }/Manager/css/font.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath }/Manager/css/index.css">
+        <script src="${pageContext.request.contextPath }/Manager/lib/layui/layui.js" charset="utf-8"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath }/Manager/js/index.js"></script>
 		<style type="text/css">
 			#dd{
 				font-size:20px;
@@ -34,12 +35,12 @@
                 <div class="layui-col-md12">
                     <div class="layui-card">
                         <div class="layui-card-body ">
-                            <form class="layui-form layui-col-space5">
+                            <form class="layui-form layui-col-space5" action="${pageContext.request.contextPath }/customerServlet?cmd=findByCname" method="post">
                                 <div class="layui-inline layui-show-xs-block">
-                                    <input type="text" name="username"  placeholder="用户名" autocomplete="off" class="layui-input">
+                                    <input type="text" name="c_name"  placeholder="用户名" autocomplete="off" class="layui-input">
                                 </div>
                                 <div class="layui-inline layui-show-xs-block">
-                                    <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+                                    <button type="submit" class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
                                 </div>
                             </form>
                         </div>
@@ -51,36 +52,50 @@
                             <table class="layui-table layui-form">
                                 <thead >
                                   <tr>
-                                    <th>
-                                      <input type="checkbox" lay-filter="checkall" name="" lay-skin="primary">
-                                    </th>
                                     <th>ID</th>
                                     <th>用户名</th>
+                                    <th>密码</th>
                                     <th>性别</th>
-                                    <th>手机</th>
+                                    <th>联系方式</th>
                                     <th>状态</th>
-                                    <th>操作</th></tr>
+                                    <th>操作</th>
                                 </thead>
                                 <tbody >
+                                <c:forEach items="${customers }" var="ct" >
                                   <tr>
-                                    <td>
-                                      <input type="checkbox" name="id" value="1"   lay-skin="primary"> 
-                                    </td>
-                                    <td>1</td>
-                                    <td>小明</td>
-                                    <td>男</td>
-                                    <td>13000000000</td>
-                                    <td class="td-status">
-                                      <span class="layui-btn layui-btn-normal layui-btn-mini">已激活</span></td>
-                                    <td class="td-manage">
-                                      <a onclick="member_stop(this,'10001')" href="javascript:;"  title="激活">
-                                        <i class="layui-icon" id="dd">&#xe601;</i>
-                                      </a>
-<!--                                       <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
-                                        <i class="layui-icon" id="dd">&#xe640;</i>
-                                      </a> -->
-                                    </td>
+                                    <td>${ct.c_id }</td>
+                                    <td>${ct.c_name }</td>
+                                    <td>${ct.c_password }</td>
+                                    <c:if test="${ct.c_gender == 0 }">
+                                    	<td>男</td>
+                                    </c:if>
+                                    <c:if test="${ct.c_gender == 1 }">
+                                    	<td>女</td>
+                                    </c:if>
+                                    <td>${ct.c_tel}</td>
+                                    <c:if test="${ct.c_state == 0 }">
+	                                    <td class="td-status">
+	                                      <span class="layui-btn layui-btn-normal layui-btn-mini">已激活</span>
+		                                </td>
+	                                    <td class="td-manage">
+	                                      <a  href="customerServlet?cmd=update&c_id=${ct.c_id }&c_state=1"  title="禁用">
+	                                        <i class="layui-icon" id="dd">&#xe601;</i>
+	                                      </a>
+	                                    </td>
+                                    </c:if>
+                                    <c:if test="${ct.c_state == 1 }">
+	                                    <td class="td-status">
+	                                      <span class="layui-btn layui-btn-normal layui-btn-mini">已禁用</span>
+	                                    </td>
+	                                    <td class="td-manage">
+	                                    <a  href="customerServlet?cmd=update&c_id=${ct.c_id }&c_state=0"  title="激活">
+	                                        <i class="layui-icon" id="dd">&#xe601;</i>
+	                                    </a>
+	                                    </td>
+                                    </c:if>
+                                    
                                   </tr>
+                               </c:forEach>
                                 </tbody>
                             </table>
                         </div>

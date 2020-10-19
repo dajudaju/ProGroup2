@@ -25,15 +25,15 @@ public class DiscussService implements IDiscussService {
 	}
 
 	@Override
-	public boolean updateDiscuss(Discuss discuss) {
+	public boolean updateDiscuss(String d_replay, int d_id) {
 
-		return dao.updateDiscuss(discuss);
+		return dao.updateDiscuss(d_replay, d_id);
 	}
 
 	@Override
-	public boolean deleteDiscuss(int d_id) {
+	public boolean deleteDiscuss(int[] d_ids) {
 
-		return dao.deleteDiscuss(d_id);
+		return dao.deleteDiscuss(d_ids);
 	}
 
 	@Override
