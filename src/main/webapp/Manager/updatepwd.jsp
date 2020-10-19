@@ -26,20 +26,58 @@
             position: absolute;
         }
     </style>
-
+<!-- 引入jQuery -->
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">
+</script>
+<script type="text/javascript">
+	$(function() {
+		
+		$("#password").click=function(){
+			
+		alert("hello");
+		};
+		//原始密码的校验
+		function pwdcheck(){
+			var cookies = ducument.cookie;
+			alert(cookies);
+			//当前登录用户的正确密码
+			var right = 2;
+			var pwd = document.getElementById("password").value;
+			
+		}
+		
+		//输入新密码的校验
+		function newpwdcheck() {
+			var password = document.getElementById("newpassword").value;
+			var passwordspan = document.getElementById("msg");
+			// alert(name);
+			var str = /^[0-9a-zA-Z]{6,12}$/;
+			if (str.test(password)) {
+				// alert("test");
+				passwordspan.innerHTML = "<font color='green' size='2'>√</font>";
+				return true;
+			} else {
+				// alert("test1");
+				passwordspan.innerHTML = "<font color='red' size='2'>×请输入6-12位数字或字母</font>";
+				return false;
+			}
+		}
+		
+	});
+</script>
 </head>
 <body>
 
 <div class="x-body">
-    <form class="layui-form layui-form-pane" action="" id="add">
+    <form class="layui-form layui-form-pane" action="${pageContext.request.contextPath }/managerServlet?cmd=updatepwd" method="post" onsubmit="return checkUpdate()" id="add">
         <blockquote class="layui-elem-quote">
             <input type="hidden" name="id" value="8">
             <div >
                 <!-- <input class="layui-upload " type="file" accept="undefined" id="previewImg" name="images"  onchange="upload(this,8)"> -->
                 <img src="./images/tp.jpg" class="layui-circle" style="width:50px;height:50px;float:left" id="pimages" name="pimages"   alt="个人头像" >
-                <input id="avatar"   name="image" required="" type="hidden" value="./images/tx.jpg" >
+                <input id="avatar"   name="image" type="hidden" value="./images/tx.jpg" >
                 <dl style="margin-left:80px; color:#019688">
-                    <dt><span >{sessionScope.name}</span> <span ></span></dt>
+                    <dt><span >${manager.m_name}</span> <span ></span></dt>
                     <dd style="margin-left:0">这家伙很懒，什么也没有留下</dd>
                 </dl>
             </div>
@@ -55,8 +93,9 @@
                             <span class='x-red'>*</span>密码
                         </label>
                         <div class="layui-input-block">
-                            <input type="password" id="password" name="password" value="" autocomplete="off" placeholder="请输入原密码（密码由）"
+                            <input type="password" id="password" value="" autocomplete="off" placeholder="请输入原密码"
                                    class="layui-input">
+                            <!-- <span class="ps" id="ps">sd</span> -->
                         </div>
                     </div>
                     <div class="layui-form-item">
@@ -64,8 +103,9 @@
                             <span class='x-red'>*</span>新密码
                         </label>
                         <div class="layui-input-block">
-                            <input type="password" id="newpassword" name="newpassword" value="" autocomplete="off" placeholder="请输入新密码"
+                            <input type="password" id="newpassword" name="m_password" value="" autocomplete="off" placeholder="请输入新密码"
                                    class="layui-input">
+                            <!-- <span class="nps" id="nps">sd</span> -->
                         </div>
                     </div>
 
@@ -74,17 +114,18 @@
                             <span class='x-red'>*</span>确认密码
                         </label>
                         <div class="layui-input-block">
-                            <input type="password" id="newpassword2" name="newpassword2" value="" autocomplete="off" placeholder="请再次输入新密码"
+                            <input type="password" id="newpassword2" autocomplete="off" placeholder="请再次输入新密码"
                                    class="layui-input">
+                           <!--  <span class="nps2" id="nps2">sd</span>       -->
                         </div>
                     </div>
 
                     <div class="layui-form-item">
-                        <input class="layui-btn" type="sumbit" value="修改"/>
+                        <input class="layui-btn" type="submit" value="修改"/>
                     </div>
                     <!--</form>-->
-                    <p align="center" style="color:red" id="msg">fdfjddhg</p>
-                    <!-- <div style="height:100px;"></div> -->
+                    <p align="center" style="color:red" id="msg"></p>
+                    <div style="height:100px;"></div> 
                 </div>
 
 
@@ -97,13 +138,13 @@
 <script src="lib/layui/layui.js" charset="utf-8"></script>
 <script src="js/x-layui.js" charset="utf-8"></script>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 	
 	var password=document.getElementById("password").value;
 	var newpassword=document.getElementById("newpassword").value;
 	var newpassword=document.getElementById("newpassword").value;
 	alert(password+newpassword+newpassword);
-</script>
+</script> -->
 
 <!-- <script>
     layui.use(['element','layer','form'], function(){

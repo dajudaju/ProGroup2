@@ -41,14 +41,14 @@ public class DiscussDao implements IDiscussDao {
 	}
 
 	@Override
-	public boolean updateDiscuss(Discuss discuss) {
+	public boolean updateDiscuss(String d_repaly, int d_id) {
 
 		String sql = "update tb_discuss set d_replay=? where d_id=?";
 		QueryRunner runner = new QueryRunner(TxDBUtils.getSource());
 
 		try {
 
-			int line = runner.update(sql, discuss.getD_replay(), discuss.getD_id());
+			int line = runner.update(sql, d_repaly, d_id);
 			if (line == 1) {
 				return true;
 			}
@@ -61,17 +61,20 @@ public class DiscussDao implements IDiscussDao {
 	}
 
 	@Override
-	public boolean deleteDiscuss(int d_id) {
+	public boolean deleteDiscuss(int[] d_ids) {
 
-		String sql = "delete from tb_discuss where d_id=?";
 		QueryRunner runner = new QueryRunner(TxDBUtils.getSource());
 
 		try {
 
-			int line = runner.update(sql, d_id);
-			if (line == 1) {
-				return true;
+			for (int i = 0; i < d_ids.length; i++) {
+				String sql = "delete from tb_discuss where d_id=?";
+				int line = runner.update(sql, d_ids[i]);
+				if (line != 1) {
+					return false;
+				}
 			}
+			return true;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -122,10 +125,10 @@ public class DiscussDao implements IDiscussDao {
 		List<Discuss> list = null;
 		QueryRunner runner = new QueryRunner(TxDBUtils.getSource());
 		// 默认
-		String sql = "select * from tb_discuss where d_replay=null";
+		String sql = "select * from tb_discuss where d_replay is null;";
 		if (flag) {
 			// 为true,已回复的评论查找
-			sql = "select * from tb_discuss where d_replay!=null";
+			sql = "select * from tb_discuss where d_replay is not null;";
 		}
 
 		try {

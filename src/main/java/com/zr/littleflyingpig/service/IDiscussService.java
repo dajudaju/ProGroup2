@@ -23,12 +23,12 @@ public interface IDiscussService {
 	boolean addDiscuss(Discuss discuss);
 
 	/**
-	 * 评论信息的修改
+	 * 评论信息的修改,即商家的回复
 	 * 
-	 * @param discuss 一个Discuss对象
+	 * @param d_replay:商家回复内容,d_id:商家回复的对应评论id
 	 * @return 一个boolean值，true为成功，false为失败
 	 */
-	boolean updateDiscuss(Discuss discuss);
+	boolean updateDiscuss(String d_replay, int d_id);
 
 	/**
 	 * 根据评论id删除用评论信息
@@ -36,7 +36,7 @@ public interface IDiscussService {
 	 * @param d_id int类型，评论id
 	 * @return 一个boolean值，true为成功，false为失败
 	 */
-	boolean deleteDiscuss(int d_id);
+	boolean deleteDiscuss(int[] d_ids);
 
 	/**
 	 * 根据评论id查看评论信息

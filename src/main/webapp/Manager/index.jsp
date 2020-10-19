@@ -38,13 +38,13 @@
 
             <ul class="layui-nav right" lay-filter="">
                 <li class="layui-nav-item">
-                    <a href="javascript:;">{sessionScope.name}</a>
+                    <a href="javascript:;">${manager.m_name}</a>
                     <dl class="layui-nav-child">
                         <!-- 二级菜单 -->
                         <dd>
-                            <a onclick="xadmin.open('修改密码','updatepwd.jsp')">修改密码</a></dd>
+                            <a onclick="xadmin.open('修改密码','Manager/updatepwd.jsp')">修改密码</a></dd>
                         <dd>
-                            <a href="./login.jsp">退出</a></dd>
+                            <a href="${pageContext.request.contextPath}/managerServlet?cmd=logout">退出</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item to-index">
@@ -119,7 +119,7 @@
                         <ul class="sub-menu">
 
                             <li>
-                                <a onclick="xadmin.add_tab('用户列表','member-list.jsp')">
+                                <a onclick="xadmin.add_tab('用户列表','customerServlet?cmd=findAll')">
                                     <i class="iconfont">&#xe6a7;</i>
                                     <cite>用户列表</cite></a>
                             </li>
@@ -132,7 +132,7 @@
                             <i class="iconfont nav_right">&#xe697;</i></a>
                         <ul class="sub-menu">
                             <li>
-                                <a onclick="xadmin.add_tab('评论列表','note.jsp')">
+                                <a onclick="xadmin.add_tab('评论列表','discussServlet?cmd=findAll')">
                                     <i class="iconfont">&#xe6a7;</i>
                                     <cite>评论列表</cite></a>
                             </li>

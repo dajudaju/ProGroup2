@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 <!DOCTYPE html>
 <html class="x-admin-sm">
 <head>
@@ -8,10 +9,11 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
-    <link rel="stylesheet" href="./css/font.css">
-    <link rel="stylesheet" href="./css/index.css">
-    <script src="./lib/layui/layui.js" charset="utf-8"></script>
-    <script type="text/javascript" src="./js/index.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Manager/css/font.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Manager/css/index.css">
+    <script src="${pageContext.request.contextPath}/Manager/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/Manager/js/index.js"></script>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 	<style type="text/css">
 		#dd{
 			font-size:20px
@@ -33,8 +35,8 @@
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md12">
             <div class="layui-card">
+               <form class="layui-form layui-col-space5" action="${pageContext.request.contextPath }/discussServlet?cmd=search" method="post">
                 <div class="layui-card-body ">
-                    <form class="layui-form layui-col-space5">
 <!--                         <div class="layui-inline layui-show-xs-block">
                             <input class="layui-input"  autocomplete="off" placeholder="开始日" name="start" id="start">
                         </div>
@@ -42,22 +44,23 @@
                             <input class="layui-input"  autocomplete="off" placeholder="截止日" name="end" id="end">
                         </div> -->
                         <div class="layui-inline layui-show-xs-block">
-                            <input type="text" name="username"  placeholder="请输入商品名" autocomplete="off" class="layui-input">
+                            <input type="text" name="d_name"  placeholder="请输入商品名" autocomplete="off" class="layui-input">
                         </div>
                         <div class="layui-input-inline layui-show-xs-block">
-                                    <select name="contrller">
-                                        <option value="">回复状态</option>
+                                    <select name="d_state">
+                                        <option value="-1">回复状态</option>
                                         <option value="0">未回复</option>
                                         <option value="1">已回复</option>
                                     </select>
                                 </div>
                         <div class="layui-inline layui-show-xs-block">
-                            <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+                            <button type="submit" class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
                         </div>
-                    </form>
                 </div>
+                </form>
+                <form class="layui-form layui-col-space5" action="${pageContext.request.contextPath }/discussServlet?cmd=deleteAll" method="post">
                 <div class="layui-card-header">
-                    <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
+                    <button class="layui-btn layui-btn-danger" type="submit"><i class="layui-icon"></i>批量删除</button>
                     <!--<button class="layui-btn" onclick="xadmin.open('添加用户','./articletypeadd.jsp',800,600)"><i class="layui-icon"></i>添加</button>-->
                 </div>
                 <div class="layui-card-body layui-table-body layui-table-main">
@@ -65,56 +68,50 @@
                         <thead>
                         <tr>
                             <th>
-                                <input type="checkbox" lay-filter="checkall" name="" lay-skin="primary">
+                                <input type="checkbox" lay-filter="checkall" name="check" lay-skin="primary">
                             </th>
-                            <th>
-                                商品名
-                            </th>
-                            <th>
-                                评论者
-                            </th>
-                            <th>
-                                评论内容
-                            </th>
-                            <th>
-                                回复内容
-                            </th>
-
-                            <th>
-                                操作
-                            </th>
+                            <th>ID</th>
+                            <th>用户名</th>
+                            <th>商品名</th>
+                            <th>评论内容</th>
+                            <th>商家回复</th>
+                            <th>操作</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>
-                                <input type="checkbox" name="id" value="1"   lay-skin="primary">
-                            </td>
-                            <td>
-                                1
-                            </td>
-                            <td>
-                                百度
-                            </td>
-							<td >
-                                0
-                            </td>
-                            <td >
-                                0
-                            </td>
-                            <td class="td-manage">
-								<a title="回复"  onclick="xadmin.open('回复','replay.jsp',600,400)" href="javascript:;">
-                                        <i class="layui-icon" id="dd">&#xe642;</i>
-                                      </a>&emsp;&emsp;
-                                <a title="删除" href="javascript:;" onclick="link_del(this,'1')"
-                                   style="text-decoration:none">
-                                    <i class="layui-icon" id="dd">&#xe640;</i>
-                                </a>
-                            </td>
-                        </tr>
+                        <c:forEach items="${discuss_list }" var="d" >
+	                        <tr>
+	                            <td>
+	                                <input type="checkbox" name="d_id" value="${d.d_id }"   lay-skin="primary">
+	                            </td>
+								<td>${d.d_id }</td>
+	                            <td>${d.c_name }</td>
+	                            <td>${d.w_name }</td>
+	                            <td>${d.d_content }</td>
+	                            <td>${d.d_replay }</td>
+	                            <td class="td-manage">
+	                            	<c:if test="${d.d_replay == null }">
+									<a title="回复"  onclick="xadmin.open('回复','Manager/replay.jsp?content=${d.d_content}&id=${d.d_id }',600,400)" href="javascript:;">
+	                                        <i class="layui-icon" id="dd">&#xe642;</i>
+	                                      </a>
+	                                </c:if>
+	                                <c:if test="${d.d_replay != null }">
+	                                <a title="回复"  href="javascript:void(0);">
+	                                        <i class="layui-icon" id="dd">&#xe642;</i>
+	                                      </a>
+	                                </c:if>
+	                                 &emsp;&emsp;
+	                                <a href="discussServlet?cmd=delete&d_id=${d.d_id }" id="a_del" title="删除" 
+	                                   style="text-decoration:none">
+	                                    <i class="layui-icon" id="dd">&#xe640;</i>
+	                                </a>
+	                            </td>
+	                        </tr>
+                        </c:forEach>
                         </tbody>
                     </table>
                 </div>
+                </form>
 
                 <div class="layui-card-body ">
                     <div class="page">
@@ -134,6 +131,15 @@
 </div>
 </body>
 <script>
+	
+	function delOne(id) {
+		var a = document.getElementById("a_del");
+		if (confirm("确定删除吗?")) {
+			a.href = "discussServlet?cmd=delete&d_id="+id;
+		}
+		
+	}
+	
     layui.use(['laydate','form'], function(){
         var laydate = layui.laydate;
         var  form = layui.form;
@@ -197,8 +203,7 @@
     function link_del(obj,id){
         layer.confirm('确认要删除吗？',{icon:3,title:'提示信息'},function(index){
             //发异步删除数据
-            $(obj).parents("tr").remove();
-            layer.msg('已删除!',{icon:1,time:1000});
+            $("#a_del").attr("href","discussServlet?cmd=delete");
         });
     }
 
@@ -216,8 +221,7 @@
 
         layer.confirm('确认要删除吗？'+ids.toString(),{icon:3,title:'提示信息'},function(index){
             //捉到所有被选中的，发异步进行删除
-            layer.msg('删除成功', {icon: 1});
-            $(".layui-form-checked").not('.header').parents('tr').remove();
+            return true;
         });
     }
 </script>

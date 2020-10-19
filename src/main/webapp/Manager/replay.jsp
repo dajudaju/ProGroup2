@@ -32,14 +32,15 @@
 <body>
 
 <div class="layui-card">
-    <form class="layui-form layui-form-pane" action="" id="add">
+    <form class="layui-form layui-form-pane" action="${pageContext.request.contextPath }/discussServlet?cmd=replay" method="post" id="add">
         <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+        			<input style="display: none;" type="text" name="d_id" value="<%=request.getParameter("id") %>"/>
                     <div class="layui-form-item layui-form-text">
                         <label class="layui-form-label">
                             <span class='x-red'>*</span>用户评论
                         </label>
                         <div class="layui-input-block">
-                            <textarea placeholder="请输入内容" readonly="readonly" name="abstract" class="layui-textarea"></textarea>
+                            <textarea  placeholder="请输入内容" readonly="readonly" name="abstract" class="layui-textarea"><%=request.getParameter("content") %></textarea>
                         </div>
                     </div>
                     <div class="layui-form-item layui-form-text">
@@ -47,28 +48,27 @@
                             <span class='x-red'>*</span>商家回复
                         </label>
                         <div class="layui-input-block">
-                            <textarea name="abstract" class="layui-textarea"></textarea>
+                            <textarea name="replay" class="layui-textarea"></textarea>
                         </div>
                     </div>
 
                     <div class="layui-form-item">
-                        <button class="layui-btn"  type="button" lay-filter="add" lay-submit="">
-                            回复
+                        <button class="layui-btn"  type="submit" lay-filter="add" lay-submit="">
+                      	      回复
                         </button>
                     </div>
                     <!--</form>-->
-                </div>
-
-            </div>
-
         </div>
     </form>
+            <div>
+
+        </div>
 </div>
 
 <script type="text/javascript">
     //实例化编辑器
     //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
-    UE.getEditor('content',{initialFrameWidth:600,initialFrameHeight:400,});
+    /* UE.getEditor('content',{initialFrameWidth:600,initialFrameHeight:400,}); */
 </script>
 <script>
     layui.use(['laydate','element','layer','form','upload'], function(){
@@ -152,7 +152,7 @@
 
     })
 </script>
-<!--栏目缩略图上传-->
+<!--栏目缩略图上传--><!-- 
 <script>
     function upload(obj,id){
         var formData = new FormData();
@@ -180,7 +180,7 @@
             }
         });
     }
-</script>
+</script> -->
 
 </body>
 </html>
